@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Mail-Vorlage für Arbeitgeber</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>E-Mail an Herr Bolay-og senden</h1>
+        </div>
+    </header>
+
+    <!-- Hauptinhalt -->
+    <main class="container">
+        <!-- Eingabefeld für den Namen des Arbeitgebers -->
+        <label for="arbeitgeberName">Ihr Name:</label>
+        <input type="text" id="arbeitgeberName" placeholder="z. B. Max Mustermann">
+
+        <!-- Button zum Generieren des mailto-Links -->
+        <button onclick="generateMailtoLink()">E-Mail senden</button>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Marque Bolay-og. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        function generateMailtoLink() {
+            // Name des Arbeitgebers aus dem Eingabefeld holen
+            const arbeitgeberName = document.getElementById('arbeitgeberName').value;
+
+            // Betreff und E-Mail-Text definieren
+            const betreff = "Bewerbung von " + arbeitgeberName;
+            const emailText = `Sehr geehrter Herr Bolay-og,\n\nvielen Dank für Ihre Bewerbung. Nach eingehender Prüfung werden wir uns gegebenenfalls mit Ihnen in Verbindung setzen.\n\nMit freundlichen Grüßen,\n${arbeitgeberName}\n[Unternehmensname]`;
+
+            // mailto-Link erstellen (E-Mail geht an dich)
+            const mailtoLink = `mailto:deine-email@example.com?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(emailText)}`;
+
+            // E-Mail-Client öffnen
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>
