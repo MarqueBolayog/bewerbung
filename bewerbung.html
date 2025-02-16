@@ -3,28 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online-Bewerbung</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Bewerbungsgenerator</title>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1>Online-Bewerbung</h1>
-        </div>
-    </header>
+    <h1>Bewerbungsgenerator</h1>
+    <form id="coverLetterForm">
+        <label for="company_name">Firmenname:</label>
+        <input type="text" id="company_name" name="company_name" required>
+        <br><br>
+        <label for="position">Stellenbezeichnung:</label>
+        <input type="text" id="position" name="position" required>
+        <br><br>
+        <button type="submit">Anschreiben generieren</button>
+    </form>
 
-    <!-- Hauptinhalt -->
-    <main class="container">
-        <p>Hier könnte deine vollständige Bewerbung angezeigt werden.</p>
-        <p>Lebenslauf, Anschreiben, Referenzen usw.</p>
-    </main>
+    <h2>Anschreiben:</h2>
+    <pre id="coverLetterOutput"></pre>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Marque Bolay-og. Alle Rechte vorbehalten.</p>
-        </div>
-    </footer>
+    <script>
+        // Funktion, um das aktuelle Datum im Format "Bad Nauheim, 16. Februar 2025" zu generieren
+        function getCurrentDate() {
+            const months = [
+                "Januar", "Februar", "März", "April", "Mai", "Juni",
+                "Juli", "August", "September", "Oktober", "November", "Dezember"
+            ];
+            const today = new Date();
+            const day = today.getDate();
+            const month = months[today.getMonth()];
+            const year = today.getFullYear();
+            return `Bad Nauheim, ${day}. ${month} ${year}`;
+        }
+
+        // Funktion, um das Anschreiben zu generieren
+        function generateCoverLetter(companyName, position) {
+            const currentDate = getCurrentDate(); // Aktuelles Datum einfügen
+            return `
+Marque Bolay-Og, Merlinweg 3, 61231 Bad Nauheim
+
+${companyName}
+Herrn Giuseppe Conti
+Schöffenstr. 18
+65933 Frankfurt am Main
+
+
+${currentDate}
+
+
+Bewerbung als ${position}
+
+
+Sehr geehrte Damen und Herren,
+
+bei der Suche nach einer Möglichkeit, mein sehr breites Fachwissen in der Industrie 
+engagiert einzubringen, ist mir Ihr Stellenangebot in der Jobsuche sofort aufgefallen. Mit über 15 Jahren Berufserfahrung in der Produktion und mit meiner erfolgreich abgeschlossenen Umschulung zum Industriekaufmann, können Sie mich bereits nach einer sehr kurzen Onboardingphase uneingeschränkt einsetzen. In einem Unternehmen zu arbeiten, das mit höchster Sorgfalt und professioneller Kompetenz erfolgreich ist, motiviert mich zusätzlich.
+
+In der Vergangenheit war ich für das Entwickeln von Marketingstrategien und –kampagnen, das Customer-Relationship-Management sowie für das Durchführen des Beschaffungs- und Einkaufsmanagements und darüber hinaus für das Verwalten des Lagers und dem Koordinieren der Logistik mitverantwortlich, so dass ich die sachgerechte Umsetzung der entsprechenden Arbeitsprozesse sicher beherrsche. Aufgrund meiner kontinuierlichen Tätigkeit in der Produktion bin ich bestens vertraut mit sämtlichen Anforderungen und Vorschriften und gewährleiste deren präzise Einhaltung.
+
+Neben meiner fachlichen Kompetenz werde ich besonders für meine Belastbarkeit sowie für meine schnelle und zuverlässige Arbeitsweise geschätzt. Hinzu kommt, dass ich jederzeit voll motiviert bin und mit großem Einsatz auch über die reguläre Arbeitszeit hinaus flexibel zur Verfügung stehe, wenn Fristen eingehalten werden müssen oder ein Kollege ausgefallen ist. Meine freundliche und offene Art hilft mir, mich schnell in bestehende Teams zu integrieren.
+
+Mein Eintrittsdatum stimme ich gern individuell auf Ihren Bedarf ab und stehe Ihnen für ein Probearbeiten jederzeit zur Verfügung, um meine Fähigkeiten unter Beweis zu stellen.
+
+Auf die Gelegenheit, in einem persönlichen Gespräch mehr über Ihre Erwartungen an mich zu erfahren und Sie von meiner fachlichen Qualifikation und Motivation zu überzeugen, freue ich mich bereits jetzt.
+
+Mit freundlichen Grüßen
+
+
+Marque Bolay-Og
+
+Anlagen
+            `;
+        }
+
+        // Formular absenden und Anschreiben anzeigen
+        document.getElementById('coverLetterForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const companyName = document.getElementById('company_name').value;
+            const position = document.getElementById('position').value;
+
+            const coverLetter = generateCoverLetter(companyName, position);
+            document.getElementById('coverLetterOutput').textContent = coverLetter;
+        });
+    </script>
 </body>
 </html>
