@@ -4,78 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bewerbung Marque Bolay-og</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Allgemeine Stile */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Volle Höhe der Seite */
+            min-height: 100vh;
+            color: #333;
         }
 
         header {
-            background: #007BFF; /* Blauer Hintergrund */
-            color: white; /* Weiße Schrift */
-            padding: 20px 0;
-        }
-
-        header h1 {
-            margin: 0;
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 20px auto;
-            padding: 20px;
+            padding: 25px;
             background: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            flex: 1; /* Nimmt den verfügbaren Platz ein */
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            flex: 1;
         }
 
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 20px;
+            border: 4px solid #007BFF;
         }
 
         a, button {
-            display: block;
-            margin: 10px 0;
-            padding: 10px;
+            display: inline-block;
+            padding: 12px 18px;
             background: #007BFF;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
-            width: 100%;
             font-size: 16px;
+            transition: 0.3s;
         }
 
         a:hover, button:hover {
             background: #0056b3;
         }
 
+        .button-group a {
+            margin: 10px 5px;
+        }
+
         footer {
-            background: #007BFF; /* Blauer Hintergrund */
-            color: white; /* Weiße Schrift */
-            padding: 10px 0;
-            margin-top: auto; /* Footer bleibt unten */
+            background: #007BFF;
+            color: white;
+            padding: 15px 0;
+            margin-top: auto;
+            text-align: center;
         }
 
-        footer p {
-            margin: 0;
-        }
-
-        /* DSGVO-Popup */
         .popup {
             display: none;
             position: fixed;
@@ -88,99 +85,69 @@
             z-index: 1000;
         }
 
-        .popup-content {
-            text-align: left;
-        }
-
         .popup-buttons {
             display: flex;
             gap: 10px;
             margin-top: 20px;
         }
-
-        .popup-buttons button {
-            flex: 1;
-        }
     </style>
 </head>
 <body>
-    <!-- DSGVO-Popup -->
     <div id="dsgvo-popup" class="popup">
-        <div class="popup-content">
-            <h2>Datenschutz und Cookies</h2>
-            <p>
-                Wir verwenden Cookies und verarbeiten personenbezogene Daten, um Ihnen die bestmögliche Nutzererfahrung zu bieten. 
-                Durch Klicken auf "Akzeptieren" stimmen Sie der Verarbeitung zu. Weitere Informationen finden Sie in unserer 
-                <a href="datenschutz.html">Datenschutzerklärung</a>.
-            </p>
-            <div class="popup-buttons">
-                <button onclick="acceptDSGVO()">Akzeptieren</button>
-                <button onclick="declineDSGVO()">Ablehnen</button>
-            </div>
+        <h2>Datenschutz und Cookies</h2>
+        <p>Wir verwenden Cookies für die beste Nutzererfahrung. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+        <div class="popup-buttons">
+            <button onclick="acceptDSGVO()">Akzeptieren</button>
+            <button onclick="declineDSGVO()">Ablehnen</button>
         </div>
     </div>
 
-    <!-- Header -->
     <header>
-        <div class="container">
-            <h1>Marque Bolay-og</h1>
-            <p>Bewerbung als Industriekaufmann</p>
-        </div>
+        <h1>Marque Bolay-og</h1>
+        <p>Bewerbung als Industriekaufmann</p>
     </header>
 
-    <!-- Hauptinhalt -->
     <main class="container">
-        <!-- Profilbild als SVG -->
         <img src="profilbild.svg" alt="Profilbild" class="profile-img">
-
         <p>Email: <a href="mailto:marque_b@hotmail.de">marque_b@hotmail.de</a></p>
         <p>Telefon: <a href="tel:+4915731489393">+49 157 31 48 93 93</a></p>
-        
         <h2>Downloads</h2>
-        <a href="lebenslauf.pdf" download>Lebenslauf herunterladen</a>
-        <a href="anschreiben.pdf" download>Anschreiben herunterladen</a>
-        <a href="zeugnisse.pdf" download>Zeugnisse herunterladen</a>
-        <a href="bewerbung.vcf" download>vCard herunterladen</a>
-
-        <!-- Button zur Bewerbungsansicht -->
-        <a href="bewerbung.html" class="button">Bewerbung online ansehen</a>
-
-        <!-- Button zur E-Mail-Vorlage (öffnet in neuem Tab) -->
-        <a href="email-vorlage.html" class="button" target="_blank">E-Mail-Vorlage verwenden</a>
+        <div class="button-group">
+            <a href="lebenslauf.pdf" download>Lebenslauf</a>
+            <a href="anschreiben.pdf" download>Anschreiben</a>
+            <a href="zeugnisse.pdf" download>Zeugnisse</a>
+            <a href="bewerbung.vcf" download>vCard</a>
+        </div>
+        <h2>Bewerbung</h2>
+        <div class="button-group">
+            <a href="bewerbung.html">Online ansehen</a>
+            <a href="email-vorlage.html" target="_blank">E-Mail-Vorlage</a>
+        </div>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Marque Bolay-og. Alle Rechte vorbehalten.</p>
-            <p><a href="datenschutz.html">Datenschutzerklärung</a></p>
-        </div>
+        <p>&copy; 2025 Marque Bolay-og. Alle Rechte vorbehalten.</p>
+        <p><a href="datenschutz.html">Datenschutzerklärung</a></p>
     </footer>
 
-    <!-- JavaScript für das DSGVO-Popup -->
     <script>
-        // Funktion zum Anzeigen des DSGVO-Popups
         function showDSGVOPopup() {
-            const popup = document.getElementById('dsgvo-popup');
             if (!localStorage.getItem('dsgvo-accepted')) {
-                popup.style.display = 'block';
+                document.getElementById('dsgvo-popup').style.display = 'block';
             }
         }
 
-        // Funktion zum Akzeptieren der DSGVO
         function acceptDSGVO() {
             localStorage.setItem('dsgvo-accepted', 'true');
             document.getElementById('dsgvo-popup').style.display = 'none';
         }
 
-        // Funktion zum Ablehnen der DSGVO
         function declineDSGVO() {
             localStorage.setItem('dsgvo-accepted', 'false');
             document.getElementById('dsgvo-popup').style.display = 'none';
-            alert('Sie haben die Verwendung von Cookies abgelehnt.');
+            alert('Sie haben Cookies abgelehnt.');
         }
 
-        // Popup beim Laden der Seite anzeigen
         document.addEventListener('DOMContentLoaded', showDSGVOPopup);
     </script>
 </body>
