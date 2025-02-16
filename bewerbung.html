@@ -8,12 +8,30 @@
 <body>
     <h1>Bewerbungsgenerator</h1>
     <form id="coverLetterForm">
+        <!-- Persönliche Daten -->
+        <label for="your_name">Dein Name:</label>
+        <input type="text" id="your_name" name="your_name" required>
+        <br><br>
+        <label for="your_address">Deine Anschrift:</label>
+        <input type="text" id="your_address" name="your_address" required>
+        <br><br>
+
+        <!-- Firmendaten -->
         <label for="company_name">Firmenname:</label>
         <input type="text" id="company_name" name="company_name" required>
         <br><br>
+        <label for="contact_person">Ansprechpartner (z. B. "Herrn Giuseppe Conti"):</label>
+        <input type="text" id="contact_person" name="contact_person" required>
+        <br><br>
+        <label for="company_address">Adresse der Firma:</label>
+        <input type="text" id="company_address" name="company_address" required>
+        <br><br>
+
+        <!-- Stellenbezeichnung -->
         <label for="position">Stellenbezeichnung:</label>
         <input type="text" id="position" name="position" required>
         <br><br>
+
         <button type="submit">Anschreiben generieren</button>
     </form>
 
@@ -35,15 +53,14 @@
         }
 
         // Funktion, um das Anschreiben zu generieren
-        function generateCoverLetter(companyName, position) {
+        function generateCoverLetter(yourName, yourAddress, companyName, contactPerson, companyAddress, position) {
             const currentDate = getCurrentDate(); // Aktuelles Datum einfügen
             return `
-Marque Bolay-Og, Merlinweg 3, 61231 Bad Nauheim
+${yourName}, ${yourAddress}
 
 ${companyName}
-Herrn Giuseppe Conti
-Schöffenstr. 18
-65933 Frankfurt am Main
+${contactPerson}
+${companyAddress}
 
 
 ${currentDate}
@@ -68,7 +85,7 @@ Auf die Gelegenheit, in einem persönlichen Gespräch mehr über Ihre Erwartunge
 Mit freundlichen Grüßen
 
 
-Marque Bolay-Og
+${yourName}
 
 Anlagen
             `;
@@ -78,10 +95,16 @@ Anlagen
         document.getElementById('coverLetterForm').addEventListener('submit', (event) => {
             event.preventDefault();
 
+            // Eingaben aus dem Formular holen
+            const yourName = document.getElementById('your_name').value;
+            const yourAddress = document.getElementById('your_address').value;
             const companyName = document.getElementById('company_name').value;
+            const contactPerson = document.getElementById('contact_person').value;
+            const companyAddress = document.getElementById('company_address').value;
             const position = document.getElementById('position').value;
 
-            const coverLetter = generateCoverLetter(companyName, position);
+            // Anschreiben generieren
+            const coverLetter = generateCoverLetter(yourName, yourAddress, companyName, contactPerson, companyAddress, position);
             document.getElementById('coverLetterOutput').textContent = coverLetter;
         });
     </script>
