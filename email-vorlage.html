@@ -80,6 +80,13 @@
     <main class="container">
         <label for="arbeitgeberName">Ihr Name:</label>
         <input type="text" id="arbeitgeberName" placeholder="z. B. Max Mustermann">
+        
+        <label for="unternehmen">Ihr Unternehmen:</label>
+        <input type="text" id="unternehmen" placeholder="z. B. Musterfirma GmbH">
+        
+        <label for="position">Ihre Position:</label>
+        <input type="text" id="position" placeholder="z. B. Personalmanager">
+        
         <button onclick="generateMailtoLink()">E-Mail senden</button>
     </main>
 
@@ -90,10 +97,14 @@
     <script>
         function generateMailtoLink() {
             const arbeitgeberName = document.getElementById('arbeitgeberName').value;
+            const unternehmen = document.getElementById('unternehmen').value;
+            const position = document.getElementById('position').value;
+
             const betreff = "Bewerbung von " + arbeitgeberName;
             const emailText = `Sehr geehrter Herr Bolay-og,\n\n` +
                 `vielen Dank für Ihre Bewerbung. Nach eingehender Prüfung werden wir uns gegebenenfalls mit Ihnen in Verbindung setzen.\n\n` +
-                `Mit freundlichen Grüßen,\n${arbeitgeberName}\n[Unternehmensname]`;
+                `Mit freundlichen Grüßen,\n${arbeitgeberName}\n${position}\n${unternehmen}`;
+
             const mailtoLink = `mailto:marque_b@hotmail.de?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(emailText)}`;
             window.location.href = mailtoLink;
         }
