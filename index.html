@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewerbung Marque Bolay-og</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- DSGVO-Popup -->
+    <div id="dsgvo-popup" class="popup">
+        <div class="popup-content">
+            <h2>Datenschutz und Cookies</h2>
+            <p>
+                Wir verwenden Cookies und verarbeiten personenbezogene Daten, um Ihnen die bestmögliche Nutzererfahrung zu bieten. 
+                Durch Klicken auf "Akzeptieren" stimmen Sie der Verarbeitung zu. Weitere Informationen finden Sie in unserer 
+                <a href="datenschutz.html">Datenschutzerklärung</a>.
+            </p>
+            <div class="popup-buttons">
+                <button onclick="acceptDSGVO()">Akzeptieren</button>
+                <button onclick="declineDSGVO()">Ablehnen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Marque Bolay-og</h1>
+            <p>Bewerbung als Industriekaufmann</p>
+        </div>
+    </header>
+
+    <!-- Hauptinhalt -->
+    <main class="container">
+        <!-- Profilbild als SVG -->
+        <img src="profilbild.svg" alt="Profilbild" class="profile-img">
+
+        <p>Email: <a href="mailto:marque_b@hotmail.de">marque_b@hotmail.de</a></p>
+        <p>Telefon: <a href="tel:+4915731489393">+49 157 31 48 93 93</a></p>
+        
+        <h2>Downloads</h2>
+        <a href="lebenslauf.pdf" download>Lebenslauf herunterladen</a>
+        <a href="anschreiben.pdf" download>Anschreiben herunterladen</a>
+        <a href="zeugnisse.pdf" download>Anschreiben herunterladen</a>
+        <a href="bewerbung.vcf" download>vCard herunterladen</a>
+
+        <!-- Button zur Bewerbungsansicht -->
+        <a href="bewerbung.html" class="button">Bewerbung online ansehen</a>
+
+        <!-- Button zur E-Mail-Vorlage (öffnet in neuem Tab) -->
+        <a href="email-vorlage.html" class="button" target="_blank">E-Mail-Vorlage verwenden</a>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Marque Bolay-og. Alle Rechte vorbehalten.</p>
+            <p><a href="datenschutz.html">Datenschutzerklärung</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript für das DSGVO-Popup -->
+    <script src="script.js"></script>
+</body>
+</html>
