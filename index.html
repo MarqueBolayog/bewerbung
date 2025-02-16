@@ -4,7 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bewerbung Marque Bolay-og</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Pfad zur CSS-Datei -->
+    <style>
+        /* Allgemeine Stile */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Volle Höhe der Seite */
+        }
+
+        header {
+            background: #007BFF; /* Blauer Hintergrund */
+            color: white; /* Weiße Schrift */
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1; /* Nimmt den verfügbaren Platz ein */
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        a, button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        a:hover, button:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            background: #007BFF; /* Blauer Hintergrund */
+            color: white; /* Weiße Schrift */
+            padding: 10px 0;
+            margin-top: auto; /* Footer bleibt unten */
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* DSGVO-Popup */
+        .popup {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .popup-content {
+            text-align: left;
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .popup-buttons button {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
     <!-- DSGVO-Popup -->
@@ -61,6 +158,30 @@
     </footer>
 
     <!-- JavaScript für das DSGVO-Popup -->
-    <script src="script.js"></script>
+    <script>
+        // Funktion zum Anzeigen des DSGVO-Popups
+        function showDSGVOPopup() {
+            const popup = document.getElementById('dsgvo-popup');
+            if (!localStorage.getItem('dsgvo-accepted')) {
+                popup.style.display = 'block';
+            }
+        }
+
+        // Funktion zum Akzeptieren der DSGVO
+        function acceptDSGVO() {
+            localStorage.setItem('dsgvo-accepted', 'true');
+            document.getElementById('dsgvo-popup').style.display = 'none';
+        }
+
+        // Funktion zum Ablehnen der DSGVO
+        function declineDSGVO() {
+            localStorage.setItem('dsgvo-accepted', 'false');
+            document.getElementById('dsgvo-popup').style.display = 'none';
+            alert('Sie haben die Verwendung von Cookies abgelehnt.');
+        }
+
+        // Popup beim Laden der Seite anzeigen
+        document.addEventListener('DOMContentLoaded', showDSGVOPopup);
+    </script>
 </body>
 </html>
