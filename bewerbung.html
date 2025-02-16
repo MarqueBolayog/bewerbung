@@ -8,14 +8,6 @@
 <body>
     <h1>Bewerbungsgenerator</h1>
     <form id="coverLetterForm">
-        <!-- Persönliche Daten -->
-        <label for="your_name">Dein Name:</label>
-        <input type="text" id="your_name" name="your_name" required>
-        <br><br>
-        <label for="your_address">Deine Anschrift:</label>
-        <input type="text" id="your_address" name="your_address" required>
-        <br><br>
-
         <!-- Firmendaten -->
         <label for="company_name">Firmenname:</label>
         <input type="text" id="company_name" name="company_name" required>
@@ -53,8 +45,14 @@
         }
 
         // Funktion, um das Anschreiben zu generieren
-        function generateCoverLetter(yourName, yourAddress, companyName, contactPerson, companyAddress, position) {
+        function generateCoverLetter(companyName, contactPerson, companyAddress, position) {
             const currentDate = getCurrentDate(); // Aktuelles Datum einfügen
+            const yourName = "Marque Bolay-Og"; // Dein Name (fest)
+            const yourAddress = "Merlinweg 3, 61231 Bad Nauheim"; // Deine Anschrift (fest)
+
+            // Anrede basierend auf dem Ansprechpartner
+            const salutation = contactPerson ? `Sehr geehrte/r ${contactPerson},` : "Sehr geehrte Damen und Herren,";
+
             return `
 ${yourName}, ${yourAddress}
 
@@ -69,7 +67,7 @@ ${currentDate}
 Bewerbung als ${position}
 
 
-Sehr geehrte Damen und Herren,
+${salutation}
 
 bei der Suche nach einer Möglichkeit, mein sehr breites Fachwissen in der Industrie 
 engagiert einzubringen, ist mir Ihr Stellenangebot in der Jobsuche sofort aufgefallen. Mit über 15 Jahren Berufserfahrung in der Produktion und mit meiner erfolgreich abgeschlossenen Umschulung zum Industriekaufmann, können Sie mich bereits nach einer sehr kurzen Onboardingphase uneingeschränkt einsetzen. In einem Unternehmen zu arbeiten, das mit höchster Sorgfalt und professioneller Kompetenz erfolgreich ist, motiviert mich zusätzlich.
@@ -96,15 +94,13 @@ Anlagen
             event.preventDefault();
 
             // Eingaben aus dem Formular holen
-            const yourName = document.getElementById('your_name').value;
-            const yourAddress = document.getElementById('your_address').value;
             const companyName = document.getElementById('company_name').value;
             const contactPerson = document.getElementById('contact_person').value;
             const companyAddress = document.getElementById('company_address').value;
             const position = document.getElementById('position').value;
 
             // Anschreiben generieren
-            const coverLetter = generateCoverLetter(yourName, yourAddress, companyName, contactPerson, companyAddress, position);
+            const coverLetter = generateCoverLetter(companyName, contactPerson, companyAddress, position);
             document.getElementById('coverLetterOutput').textContent = coverLetter;
         });
     </script>
