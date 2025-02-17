@@ -4,75 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bewerbungsgenerator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        pre {
+            white-space: pre-wrap;
+            text-align: justify;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bewerbungsgenerator</h1>
-    <form id="coverLetterForm">
-        <!-- Firmendaten -->
-        <label for="company_name">Firmenname:</label>
-        <input type="text" id="company_name" name="company_name" required>
-        <br><br>
-        <label for="contact_person">Ansprechpartner (z. B. "Herrn Giuseppe Conti"):</label>
-        <input type="text" id="contact_person" name="contact_person" required>
-        <br><br>
-        <label for="company_address">Adresse der Firma:</label>
-        <input type="text" id="company_address" name="company_address" required>
-        <br><br>
+    <div class="container">
+        <h1>Bewerbungsgenerator</h1>
+        <form id="coverLetterForm">
+            <label for="company_name">Firmenname:</label>
+            <input type="text" id="company_name" name="company_name" required>
 
-        <!-- Stellenbezeichnung -->
-        <label for="position">Stellenbezeichnung:</label>
-        <input type="text" id="position" name="position" required>
-        <br><br>
+            <label for="contact_person">Ansprechpartner:</label>
+            <input type="text" id="contact_person" name="contact_person" required>
 
-        <button type="submit">Anschreiben generieren</button>
-    </form>
+            <label for="company_address">Adresse der Firma:</label>
+            <input type="text" id="company_address" name="company_address" required>
 
-    <h2>Anschreiben:</h2>
-    <pre id="coverLetterOutput"></pre>
+            <label for="position">Stellenbezeichnung:</label>
+            <input type="text" id="position" name="position" required>
+
+            <button type="submit">Anschreiben generieren</button>
+        </form>
+        
+        <h2>Anschreiben:</h2>
+        <pre id="coverLetterOutput"></pre>
+    </div>
 
     <script>
-        // Funktion, um das aktuelle Datum im Format "Bad Nauheim, 16. Februar 2025" zu generieren
         function getCurrentDate() {
-            const months = [
-                "Januar", "Februar", "März", "April", "Mai", "Juni",
-                "Juli", "August", "September", "Oktober", "November", "Dezember"
-            ];
+            const months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
             const today = new Date();
-            const day = today.getDate();
-            const month = months[today.getMonth()];
-            const year = today.getFullYear();
-            return `Bad Nauheim, ${day}. ${month} ${year}`;
+            return `Bad Nauheim, ${today.getDate()}. ${months[today.getMonth()]} ${today.getFullYear()}`;
         }
 
-        // Funktion, um das Anschreiben zu generieren
         function generateCoverLetter(companyName, contactPerson, companyAddress, position) {
-            const currentDate = getCurrentDate(); // Aktuelles Datum einfügen
-            const yourName = "Marque Bolay-Og"; // Dein Name (fest)
-            const yourAddress = "Merlinweg 3, 61231 Bad Nauheim"; // Deine Anschrift (fest)
-
-            // Anrede basierend auf dem Ansprechpartner
+            const currentDate = getCurrentDate();
+            const yourName = "Marque Bolay-Og";
+            const yourAddress = "Merlinweg 3, 61231 Bad Nauheim";
             const salutation = contactPerson ? `Sehr geehrte/r ${contactPerson},` : "Sehr geehrte Damen und Herren,";
 
             return `
-${yourName}, ${yourAddress}
+${yourName}
+${yourAddress}
 
 ${companyName}
 ${contactPerson}
 ${companyAddress}
 
-
 ${currentDate}
-
 
 Bewerbung als ${position}
 
-
 ${salutation}
 
-bei der Suche nach einer Möglichkeit, mein sehr breites Fachwissen in der Industrie 
-engagiert einzubringen, ist mir Ihr Stellenangebot in der Jobsuche sofort aufgefallen. Mit über 15 Jahren Berufserfahrung in der Produktion und mit meiner erfolgreich abgeschlossenen Umschulung zum Industriekaufmann, können Sie mich bereits nach einer sehr kurzen Onboardingphase uneingeschränkt einsetzen. In einem Unternehmen zu arbeiten, das mit höchster Sorgfalt und professioneller Kompetenz erfolgreich ist, motiviert mich zusätzlich.
+bei der Suche nach einer Möglichkeit, mein sehr breites Fachwissen in der Industrie engagiert einzubringen, ist mir Ihr Stellenangebot in der Jobsuche sofort aufgefallen. Mit über 15 Jahren Berufserfahrung in der Produktion und mit meiner erfolgreich abgeschlossenen Umschulung zum Industriekaufmann, können Sie mich bereits nach einer sehr kurzen Onboardingphase uneingeschränkt einsetzen. In einem Unternehmen zu arbeiten, das mit höchster Sorgfalt und professioneller Kompetenz erfolgreich ist, motiviert mich zusätzlich.
 
-In der Vergangenheit war ich für das Entwickeln von Marketingstrategien und –kampagnen, das Customer-Relationship-Management sowie für das Durchführen des Beschaffungs- und Einkaufsmanagements und darüber hinaus für das Verwalten des Lagers und dem Koordinieren der Logistik mitverantwortlich, so dass ich die sachgerechte Umsetzung der entsprechenden Arbeitsprozesse sicher beherrsche. Aufgrund meiner kontinuierlichen Tätigkeit in der Produktion bin ich bestens vertraut mit sämtlichen Anforderungen und Vorschriften und gewährleiste deren präzise Einhaltung.
+In der Vergangenheit war ich für das Entwickeln von Marketingstrategien und -kampagnen, das Customer-Relationship-Management sowie für das Durchführen des Beschaffungs- und Einkaufsmanagements und darüber hinaus für das Verwalten des Lagers und das Koordinieren der Logistik mitverantwortlich, sodass ich die sachgerechte Umsetzung der entsprechenden Arbeitsprozesse sicher beherrsche. Aufgrund meiner kontinuierlichen Tätigkeit in der Produktion bin ich bestens vertraut mit sämtlichen Anforderungen und Vorschriften und gewährleiste deren präzise Einhaltung.
 
 Neben meiner fachlichen Kompetenz werde ich besonders für meine Belastbarkeit sowie für meine schnelle und zuverlässige Arbeitsweise geschätzt. Hinzu kommt, dass ich jederzeit voll motiviert bin und mit großem Einsatz auch über die reguläre Arbeitszeit hinaus flexibel zur Verfügung stehe, wenn Fristen eingehalten werden müssen oder ein Kollege ausgefallen ist. Meine freundliche und offene Art hilft mir, mich schnell in bestehende Teams zu integrieren.
 
@@ -82,27 +114,23 @@ Auf die Gelegenheit, in einem persönlichen Gespräch mehr über Ihre Erwartunge
 
 Mit freundlichen Grüßen
 
-
 ${yourName}
 
 Anlagen
-            `;
+`;
         }
 
-        // Formular absenden und Anschreiben anzeigen
         document.getElementById('coverLetterForm').addEventListener('submit', (event) => {
             event.preventDefault();
-
-            // Eingaben aus dem Formular holen
             const companyName = document.getElementById('company_name').value;
             const contactPerson = document.getElementById('contact_person').value;
             const companyAddress = document.getElementById('company_address').value;
             const position = document.getElementById('position').value;
-
-            // Anschreiben generieren
             const coverLetter = generateCoverLetter(companyName, contactPerson, companyAddress, position);
             document.getElementById('coverLetterOutput').textContent = coverLetter;
         });
     </script>
 </body>
+</html>
+
 </html>
