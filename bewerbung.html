@@ -39,6 +39,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
         button:hover {
             background: #0056b3;
@@ -70,11 +71,12 @@
             <input type="text" id="position" name="position" required>
 
             <button type="submit">Anschreiben generieren</button>
-            <button type="button" id="downloadPdf">Als PDF herunterladen</button>
         </form>
         
         <h2>Anschreiben:</h2>
         <pre id="coverLetterOutput"></pre>
+        
+        <button type="button" id="downloadPdf">Als PDF herunterladen</button>
     </div>
 
     <script>
