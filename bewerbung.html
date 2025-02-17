@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bewerbungsgenerator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -69,6 +70,7 @@
             <input type="text" id="position" name="position" required>
 
             <button type="submit">Anschreiben generieren</button>
+            <button type="button" id="downloadPdf">Als PDF herunterladen</button>
         </form>
         
         <h2>Anschreiben:</h2>
@@ -86,11 +88,14 @@
             const currentDate = getCurrentDate();
             const yourName = "Marque Bolay-Og";
             const yourAddress = "Merlinweg 3, 61231 Bad Nauheim";
+            const yourEmail = "marque_b@hotmail.de";
+            const yourPhone = "0157 31489393";
             const salutation = contactPerson ? `Sehr geehrte/r ${contactPerson},` : "Sehr geehrte Damen und Herren,";
 
             return `
 ${yourName}
-${yourAddress}
+${yourAddress} ● ${yourPhone}
+${yourEmail}
 
 ${companyName}
 ${contactPerson}
@@ -102,21 +107,19 @@ Bewerbung als ${position}
 
 ${salutation}
 
-bei der Suche nach einer Möglichkeit, mein sehr breites Fachwissen in der Industrie engagiert einzubringen, ist mir Ihr Stellenangebot in der Jobsuche sofort aufgefallen. Mit über 15 Jahren Berufserfahrung in der Produktion und mit meiner erfolgreich abgeschlossenen Umschulung zum Industriekaufmann, können Sie mich bereits nach einer sehr kurzen Onboardingphase uneingeschränkt einsetzen. In einem Unternehmen zu arbeiten, das mit höchster Sorgfalt und professioneller Kompetenz erfolgreich ist, motiviert mich zusätzlich.
+mit großem Interesse habe ich Ihre Stellenausschreibung für die Position als ${position} gelesen. Die Möglichkeit, meine Erfahrung und mein Fachwissen in Ihr Unternehmen einzubringen, reizt mich besonders.
 
-In der Vergangenheit war ich für das Entwickeln von Marketingstrategien und -kampagnen, das Customer-Relationship-Management sowie für das Durchführen des Beschaffungs- und Einkaufsmanagements und darüber hinaus für das Verwalten des Lagers und das Koordinieren der Logistik mitverantwortlich, sodass ich die sachgerechte Umsetzung der entsprechenden Arbeitsprozesse sicher beherrsche. Aufgrund meiner kontinuierlichen Tätigkeit in der Produktion bin ich bestens vertraut mit sämtlichen Anforderungen und Vorschriften und gewährleiste deren präzise Einhaltung.
+Mit einer abgeschlossenen kaufmännischen Ausbildung sowie über 15 Jahren Berufserfahrung, darunter in der Materialwirtschaft und Auftragsabwicklung, verfüge ich über ein tiefgehendes Verständnis für die relevanten Prozesse. In meinen bisherigen Tätigkeiten war ich für die Bedarfsanalyse, Verhandlungen mit Lieferanten sowie die Überwachung von Kosten und Lieferfristen verantwortlich. Der sichere Umgang mit ERP-Systemen und MS Office gehört ebenso zu meinen Stärken wie eine analytische und lösungsorientierte Arbeitsweise.
 
-Neben meiner fachlichen Kompetenz werde ich besonders für meine Belastbarkeit sowie für meine schnelle und zuverlässige Arbeitsweise geschätzt. Hinzu kommt, dass ich jederzeit voll motiviert bin und mit großem Einsatz auch über die reguläre Arbeitszeit hinaus flexibel zur Verfügung stehe, wenn Fristen eingehalten werden müssen oder ein Kollege ausgefallen ist. Meine freundliche und offene Art hilft mir, mich schnell in bestehende Teams zu integrieren.
-
-Mein Eintrittsdatum stimme ich gern individuell auf Ihren Bedarf ab und stehe Ihnen für ein Probearbeiten jederzeit zur Verfügung, um meine Fähigkeiten unter Beweis zu stellen.
-
-Auf die Gelegenheit, in einem persönlichen Gespräch mehr über Ihre Erwartungen an mich zu erfahren und Sie von meiner fachlichen Qualifikation und Motivation zu überzeugen, freue ich mich bereits jetzt.
+Ich freue mich darauf, meine Fachkenntnisse und mein Engagement in Ihr Unternehmen einzubringen. Gerne stehe ich Ihnen für ein persönliches Gespräch zur Verfügung.
 
 Mit freundlichen Grüßen
 
 ${yourName}
 
-Anlagen
+Anlagen:
+- Lebenslauf
+- Zeugnisse
 `;
         }
 
@@ -129,8 +132,16 @@ Anlagen
             const coverLetter = generateCoverLetter(companyName, contactPerson, companyAddress, position);
             document.getElementById('coverLetterOutput').textContent = coverLetter;
         });
+
+        document.getElementById('downloadPdf').addEventListener('click', () => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const text = document.getElementById('coverLetterOutput').textContent;
+            doc.setFont("helvetica");
+            doc.setFontSize(12);
+            doc.text(text, 10, 10, { maxWidth: 180, align: "justify" });
+            doc.save("Bewerbung.pdf");
+        });
     </script>
 </body>
-</html>
-
 </html>
