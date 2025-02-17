@@ -7,9 +7,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
+            font-family: Roboto, sans-serif;
+            margin: 0;
             background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
             max-width: 600px;
@@ -17,12 +21,15 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         h1, h2 {
             text-align: center;
         }
         label {
             font-weight: bold;
+            display: block;
+            text-align: left;
         }
         input {
             width: 100%;
@@ -44,6 +51,9 @@
         button:hover {
             background: #0056b3;
         }
+        #downloadPdf {
+            margin-top: 20px;
+        }
         pre {
             white-space: pre-wrap;
             text-align: justify;
@@ -51,6 +61,7 @@
             padding: 15px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            font-family: Calibri, sans-serif;
         }
     </style>
 </head>
@@ -139,7 +150,7 @@ Anlagen:
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             const text = document.getElementById('coverLetterOutput').textContent;
-            doc.setFont("helvetica");
+            doc.setFont("calibri");
             doc.setFontSize(12);
             doc.text(text, 10, 10, { maxWidth: 180, align: "justify" });
             doc.save("Bewerbung.pdf");
