@@ -7,8 +7,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
         body {
-            font-family: 'Calibri', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             background-color: #f4f4f4;
             display: flex;
@@ -22,6 +24,9 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1, h2 {
             text-align: center;
         }
         label {
@@ -49,6 +54,23 @@
         button:hover {
             background: #0056b3;
         }
+        #downloadPdf {
+            margin-top: 20px;
+        }
+        pre {
+            white-space: pre-wrap;
+            text-align: justify;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-family: 'Calibri', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .svg-container {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -57,37 +79,79 @@
         <form id="coverLetterForm">
             <label for="company_name">Firmenname:</label>
             <input type="text" id="company_name" name="company_name" required>
+
             <label for="contact_person">Ansprechpartner:</label>
             <input type="text" id="contact_person" name="contact_person">
+
             <label for="company_address">Adresse der Firma:</label>
             <input type="text" id="company_address" name="company_address" required>
+
             <label for="position">Stellenbezeichnung:</label>
             <input type="text" id="position" name="position" required>
+
             <button type="submit">Anschreiben generieren</button>
         </form>
+        
         <h2>Anschreiben:</h2>
+        <div class="svg-container">
+            <svg width="100%" height="100%" viewBox="0 0 2481 432" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                <g id="ArtBoard1" transform="matrix(1,0,0,0.123043,0,0)">
+                    <rect x="0" y="0" width="2480.32" height="3507.87" style="fill:none;"/>
+                    <g transform="matrix(1,0,0,8.12725,0,0)">
+                        <g transform="matrix(1,0,0,1,0,9)">
+                            <path d="M296.56,207.74L2205.61,207.74" style="fill:none;stroke:rgb(0,102,255);stroke-width:12.5px;"/>
+                        </g>
+                        <g transform="matrix(1,0,0,1,-9.39591,2.95794)">
+                            <text x="1025.91px" y="193.643px" style="font-family:'Calibri-Bold', 'Calibri', sans-serif;font-weight:700;font-size:62.5px;">Mar<tspan x="1132.85px 1166.38px " y="193.643px 193.643px ">qu</tspan>e Bola<tspan x="1359.22px 1387.76px 1406.89px " y="193.643px 193.643px 193.643px ">y-o</tspan>g</text>
+                        </g>
+                        <g>
+                            <text x="750.17px" y="263.353px" style="font-family:'Calibri-Bold', 'Calibri', sans-serif;font-weight:700;font-size:50px;">Merlin<tspan x="887.816px 924.682px 949.852px " y="263.353px 263.353px 263.353px ">weg</tspan> 3    61231 Bad Nauheim   015731489393</text>
+                            <text x="1010.11px" y="313.353px" style="font-family:'Calibri-Bold', 'Calibri', sans-serif;font-weight:700;font-size:50px;">mar<tspan x="1092.62px 1119.45px " y="313.353px 313.353px ">qu</tspan>e_b@hotmail.de</text>
+                        </g>
+                        <g transform="matrix(1.73594,0,0,1.64592,-751.264,-157.896)">
+                            <ellipse cx="1025.06" cy="247.428" rx="4.244" ry="4.763"/>
+                        </g>
+                    </g>
+                    <g transform="matrix(1.73594,0,0,13.3768,-287.777,-1283.26)">
+                        <ellipse cx="1025.06" cy="247.428" rx="4.244" ry="4.763"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
         <pre id="coverLetterOutput"></pre>
+        
         <button type="button" id="downloadPdf">Als PDF herunterladen</button>
     </div>
 
     <script>
-        document.getElementById("coverLetterForm").addEventListener("submit", (event) => {
-            event.preventDefault();
-            const companyName = document.getElementById("company_name").value;
-            const contactPerson = document.getElementById("contact_person").value;
-            const companyAddress = document.getElementById("company_address").value;
-            const position = document.getElementById("position").value;
-            document.getElementById("coverLetterOutput").textContent = `
-Marque Bolay-Og
-Merlinweg 3, 61231 Bad Nauheim ● 0157 31489393
-marque_b@hotmail.de
+        function getCurrentDate() {
+            const months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+            const today = new Date();
+            return `Bad Nauheim, ${today.getDate()}. ${months[today.getMonth()]} ${today.getFullYear()}`;
+        }
+
+        function generateCoverLetter(companyName, contactPerson, companyAddress, position) {
+            const currentDate = getCurrentDate();
+            const yourName = "Marque Bolay-Og";
+            const yourAddress = "Merlinweg 3, 61231 Bad Nauheim";
+            const yourEmail = "marque_b@hotmail.de";
+            const yourPhone = "0157 31489393";
+            const salutation = contactPerson ? `Sehr geehrte/r ${contactPerson},` : "Sehr geehrte Damen und Herren,";
+
+            return `
+${yourName}
+${yourAddress} ● ${yourPhone}
+${yourEmail}
 
 ${companyName}
 ${contactPerson}
 ${companyAddress}
 
+${currentDate}
+
 Bewerbung als ${position}
-Sehr geehrte/r ${contactPerson || "Damen und Herren"},
+
+${salutation}
 
 bei der Suche nach einer Möglichkeit, mein sehr breites Fachwissen in der Industrie engagiert einzubringen, ist mir Ihr Stellenangebot in der Jobsuche sofort aufgefallen. Mit über 15 Jahren Berufserfahrung in der Produktion und mit meiner erfolgreich abgeschlossenen Umschulung zum Industriekaufmann, können Sie mich bereits nach einer sehr kurzen Onboardingphase uneingeschränkt einsetzen. In einem Unternehmen zu arbeiten, das mit höchster Sorgfalt und professioneller Kompetenz erfolgreich ist, motiviert mich zusätzlich.
 
@@ -108,44 +172,65 @@ Anlagen:
 - Zeugnisse
 
 `;
+        }
+
+        document.getElementById('coverLetterForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const companyName = document.getElementById('company_name').value;
+            const contactPerson = document.getElementById('contact_person').value;
+            const companyAddress = document.getElementById('company_address').value;
+            const position = document.getElementById('position').value;
+            const coverLetter = generateCoverLetter(companyName, contactPerson, companyAddress, position);
+            document.getElementById('coverLetterOutput').textContent = coverLetter;
         });
 
-        document.getElementById("downloadPdf").addEventListener("click", async () => {
+        document.getElementById('downloadPdf').addEventListener('click', async () => {
             const { jsPDF } = window.jspdf;
-            const { PDFDocument } = PDFLib;
             const doc = new jsPDF();
-            const headerImage = "data:image/png;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+Cjxzdmcgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDI0ODEgNDMyIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zOnNlcmlmPSJodHRwOi8vd3d3LnNlcmlmLmNvbS8iIHN0eWxlPSJmaWxsLXJ1bGU6ZXZlbm9kZDtjbGlwLXJ1bGU6ZXZlbm9kZDtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6MS41OyI+CiAgICA8ZyBpZD0iQXJ0Qm9hcmQxIiB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwwLjEyMzA0MywwLDApIj4KICAgICAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMjQ4MC4zMiIgaGVpZ2h0PSIzNTA3Ljg3IiBzdHlsZT0iZmlsbDpub25lOyIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDguMTI3MjUsMCwwKSI+CiAgICAgICAgICAgIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsMCw5KSI+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMjk2LjU2LDIwNy43NEwyMjA1LjYxLDIwNy43NCIgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6cmdiKDAsMTAyLDI1NSk7c3Ryb2tlLXdpZHRoOjEyLjVweDsiLz4KICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC05LjM5NTkxLDIuOTU3OTQpIj4KICAgICAgICAgICAgICAgIDx0ZXh0IHg9IjEwMjUuOTFweCIgeT0iMTkzLjY0M3B4IiBzdHlsZT0iZm9udC1mYW1pbHk6J0NhbGlicmktQm9sZCcsICdDYWxpYnJpJywgc2Fucy1zZXJpZjtmb250LXdlaWdodDo3MDA7Zm9udC1zaXplOjYyLjVweDsiPk1hcjx0c3BhbiB4PSIxMTMyLjg1cHggMTE2Ni4zOHB4ICIgeT0iMTkzLjY0M3B4IDE5My42NDNweCAiPnF1PC90c3Bhbj5lIEJvbGE8dHNwYW4geD0iMTM1OS4yMnB4IDEzODcuNzZweCAxNDA2Ljg5cHggIiB5PSIxOTMuNjQzcHggMTkzLjY0M3B4IDE5My42NDNweCAiPnktbzwvdHNwYW4+ZzwvdGV4dD4KICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgIDx0ZXh0IHg9Ijc1MC4xN3B4IiB5PSIyNjMuMzUzcHgiIHN0eWxlPSJmb250LWZhbWlseTonQ2FsaWJyaS1Cb2xkJywgJ0NhbGlicmknLCBzYW5zLXNlcmlmO2ZvbnQtd2VpZ2h0OjcwMDtmb250LXNpemU6NTBweDsiPk1lcmxpbjx0c3BhbiB4PSI4ODcuODE2cHggOTI0LjY4MnB4IDk0OS44NTJweCAiIHk9IjI2My4zNTNweCAyNjMuMzUzcHggMjYzLjM1M3B4ICI+d2VnPC90c3Bhbj4gMyDCoCDCoDYxMjMxIEJhZCBOYXVoZWltIMKgIDAxNTczMTQ4OTM5MzwvdGV4dD4KICAgICAgICAgICAgICAgIDx0ZXh0IHg9IjEwMTAuMTFweCIgeT0iMzEzLjM1M3B4IiBzdHlsZT0iZm9udC1mYW1pbHk6J0NhbGlicmktQm9sZCcsICdDYWxpYnJpJywgc2Fucy1zZXJpZjtmb250LXdlaWdodDo3MDA7Zm9udC1zaXplOjUwcHg7Ij5tYXI8dHNwYW4geD0iMTA5Mi42MnB4IDExMTkuNDVweCAiIHk9IjMxMy4zNTNweCAzMTMuMzUzcHggIj5xdTwvdHNwYW4+ZV9iQGhvdG1haWwuZGU8L3RleHQ+CiAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS43MzU5NCwwLDAsMS42NDU5MiwtNzUxLjI2NCwtMTU3Ljg5NikiPgogICAgICAgICAgICAgICAgPGVsbGlwc2UgY3g9IjEwMjUuMDYiIGN5PSIyNDcuNDI4IiByeD0iNC4yNDQiIHJ5PSI0Ljc2MyIvPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgICAgIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEuNzM1OTQsMCwwLDEzLjM3NjgsLTI4Ny43NzcsLTEyODMuMjYpIj4KICAgICAgICAgICAgPGVsbGlwc2UgY3g9IjEwMjUuMDYiIGN5PSIyNDcuNDI4IiByeD0iNC4yNDQiIHJ5PSI0Ljc2MyIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==";
-            doc.addImage(headerImage, "PNG", 10, 10, 180, 20);
+
+            // Anschreiben hinzufügen
             doc.setFont("helvetica");
             doc.setFontSize(12);
-            const text = document.getElementById("coverLetterOutput").textContent;
-            doc.text(text, 10, 40, { maxWidth: 180, align: "justify" });
-            const pdfBytes = doc.output("arraybuffer");
+            const text = document.getElementById('coverLetterOutput').textContent;
+            const lines = doc.splitTextToSize(text, 180);
+            doc.text(lines, 10, 20);
 
+            // Lebenslauf und Zeugnisse herunterladen und einfügen
             try {
-                const [lebenslaufResponse, zeugnisseResponse] = await Promise.all([
-                    fetch("https://github.com/MarqueBolayog/bewerbung/raw/main/lebenslauf.pdf").then(res => res.arrayBuffer()),
-                    fetch("https://github.com/MarqueBolayog/bewerbung/raw/main/zeugnisse.pdf").then(res => res.arrayBuffer())
+                const lebenslaufUrl = "https://github.com/MarqueBolayog/bewerbung/raw/main/lebenslauf.pdf";
+                const zeugnisseUrl = "https://github.com/MarqueBolayog/bewerbung/raw/main/zeugnisse.pdf";
+
+                const lebenslaufResponse = await fetch(lebenslaufUrl);
+                const lebenslaufData = await lebenslaufResponse.arrayBuffer();
+
+                const zeugnisseResponse = await fetch(zeugnisseUrl);
+                const zeugnisseData = await zeugnisseResponse.arrayBuffer();
+
+                // PDF-Lib verwenden, um die Dateien einzubetten
+                const pdfDoc = await PDFLib.PDFDocument.create();
+                const [lebenslaufPdf, zeugnissePdf] = await Promise.all([
+                    PDFLib.PDFDocument.load(lebenslaufData),
+                    PDFLib.PDFDocument.load(zeugnisseData),
                 ]);
-                const pdfDoc = await PDFDocument.create();
-                const bewerbungPdf = await PDFDocument.load(pdfBytes);
-                const bewerbungPages = await pdfDoc.copyPages(bewerbungPdf, bewerbungPdf.getPageIndices());
-                bewerbungPages.forEach(page => pdfDoc.addPage(page));
-                const lebenslaufPdf = await PDFDocument.load(lebenslaufResponse);
-                const zeugnissePdf = await PDFDocument.load(zeugnisseResponse);
+
+                // Seiten aus den PDFs kopieren
                 const lebenslaufPages = await pdfDoc.copyPages(lebenslaufPdf, lebenslaufPdf.getPageIndices());
                 const zeugnissePages = await pdfDoc.copyPages(zeugnissePdf, zeugnissePdf.getPageIndices());
-                lebenslaufPages.forEach(page => pdfDoc.addPage(page));
-                zeugnissePages.forEach(page => pdfDoc.addPage(page));
-                const finalPdfBytes = await pdfDoc.save();
-                const blob = new Blob([finalPdfBytes], { type: "application/pdf" });
+
+                // Seiten zum Haupt-PDF hinzufügen
+                lebenslaufPages.forEach((page) => pdfDoc.addPage(page));
+                zeugnissePages.forEach((page) => pdfDoc.addPage(page));
+
+                // PDF speichern
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: "application/pdf" });
                 const link = document.createElement("a");
                 link.href = URL.createObjectURL(blob);
                 link.download = "Bewerbung.pdf";
                 link.click();
             } catch (error) {
-                console.error("Fehler beim Erstellen des PDFs:", error);
-                alert("Fehler beim Erstellen der Bewerbung. Überprüfe die Links.");
+                console.error("Fehler beim Einbetten der Dateien:", error);
+                alert("Fehler beim Einbetten der Dateien. Bitte überprüfe die Links.");
             }
         });
     </script>
