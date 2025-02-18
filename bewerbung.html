@@ -64,6 +64,8 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             font-family: 'Calibri', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -75,7 +77,7 @@
             <input type="text" id="company_name" name="company_name" required>
 
             <label for="contact_person">Ansprechpartner:</label>
-            <input type="text" id="contact_person" name="contact_person" required>
+            <input type="text" id="contact_person" name="contact_person">
 
             <label for="company_address">Adresse der Firma:</label>
             <input type="text" id="company_address" name="company_address" required>
@@ -153,14 +155,28 @@ Anlagen:
             document.getElementById('coverLetterOutput').textContent = coverLetter;
         });
 
-        document.getElementById('downloadPdf').addEventListener('click', () => {
+        document.getElementById('downloadPdf').addEventListener('click', async () => {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-            const headerImg = 'data:image/png;base64,REPLACE_WITH_BASE64_ENCODED_IMAGE';
-            doc.addImage(headerImg, 'PNG', 10, 10, 180, 20);
-            doc.setFont("calibri");
+
+            // Anschreiben hinzufügen
+            doc.setFont("helvetica");
             doc.setFontSize(12);
-            doc.text(document.getElementById('coverLetterOutput').textContent, 10, 40, { maxWidth: 180, align: "justify" });
+            const text = document.getElementById('coverLetterOutput').textContent;
+            const lines = doc.splitTextToSize(text, 180);
+            doc.text(lines, 10, 20);
+
+            // Lebenslauf und Zeugnisse als Links hinzufügen
+            doc.setFontSize(10);
+            doc.text("Anlagen:", 10, doc.internal.pageSize.height - 30);
+            doc.textWithLink("Lebenslauf.pdf", 20, doc.internal.pageSize.height - 20, {
+                url: "https://github.com/MarqueBolayog/bewerbung/blob/main/lebenslauf.pdf"
+            });
+            doc.textWithLink("Zeugnisse.pdf", 20, doc.internal.pageSize.height - 15, {
+                url: "https://github.com/MarqueBolayog/bewerbung/blob/main/zeugnisse.pdf"
+            });
+
+            // PDF speichern
             doc.save("Bewerbung.pdf");
         });
     </script>
