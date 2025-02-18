@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bewerbungsgenerator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         
@@ -166,18 +167,43 @@ Anlagen:
             const lines = doc.splitTextToSize(text, 180);
             doc.text(lines, 10, 20);
 
-            // Lebenslauf und Zeugnisse als Links hinzufügen
-            doc.setFontSize(10);
-            doc.text("Anlagen:", 10, doc.internal.pageSize.height - 30);
-            doc.textWithLink("Lebenslauf.pdf", 20, doc.internal.pageSize.height - 20, {
-                url: "https://github.com/MarqueBolayog/bewerbung/blob/main/lebenslauf.pdf"
-            });
-            doc.textWithLink("Zeugnisse.pdf", 20, doc.internal.pageSize.height - 15, {
-                url: "https://github.com/MarqueBolayog/bewerbung/blob/main/zeugnisse.pdf"
-            });
+            // Lebenslauf und Zeugnisse herunterladen und einfügen
+            try {
+                const lebenslaufUrl = "https://github.com/MarqueBolayog/bewerbung/raw/main/lebenslauf.pdf";
+                const zeugnisseUrl = "https://github.com/MarqueBolayog/bewerbung/raw/main/zeugnisse.pdf";
 
-            // PDF speichern
-            doc.save("Bewerbung.pdf");
+                const lebenslaufResponse = await fetch(lebenslaufUrl);
+                const lebenslaufData = await lebenslaufResponse.arrayBuffer();
+
+                const zeugnisseResponse = await fetch(zeugnisseUrl);
+                const zeugnisseData = await zeugnisseResponse.arrayBuffer();
+
+                // PDF-Lib verwenden, um die Dateien einzubetten
+                const pdfDoc = await PDFLib.PDFDocument.create();
+                const [lebenslaufPdf, zeugnissePdf] = await Promise.all([
+                    PDFLib.PDFDocument.load(lebenslaufData),
+                    PDFLib.PDFDocument.load(zeugnisseData),
+                ]);
+
+                // Seiten aus den PDFs kopieren
+                const lebenslaufPages = await pdfDoc.copyPages(lebenslaufPdf, lebenslaufPdf.getPageIndices());
+                const zeugnissePages = await pdfDoc.copyPages(zeugnissePdf, zeugnissePdf.getPageIndices());
+
+                // Seiten zum Haupt-PDF hinzufügen
+                lebenslaufPages.forEach((page) => pdfDoc.addPage(page));
+                zeugnissePages.forEach((page) => pdfDoc.addPage(page));
+
+                // PDF speichern
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: "application/pdf" });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = "Bewerbung.pdf";
+                link.click();
+            } catch (error) {
+                console.error("Fehler beim Einbetten der Dateien:", error);
+                alert("Fehler beim Einbetten der Dateien. Bitte überprüfe die Links.");
+            }
         });
     </script>
 </body>
