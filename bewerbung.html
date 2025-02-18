@@ -153,15 +153,67 @@ Anlagen:
             document.getElementById('coverLetterOutput').textContent = coverLetter;
         });
 
-        document.getElementById('downloadPdf').addEventListener('click', () => {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            const headerImg = 'data:image/png;base64,REPLACE_WITH_BASE64_ENCODED_IMAGE';
-            doc.addImage(headerImg, 'PNG', 10, 10, 180, 20);
-            doc.setFont("calibri");
-            doc.setFontSize(12);
-            doc.text(document.getElementById('coverLetterOutput').textContent, 10, 40, { maxWidth: 180, align: "justify" });
-            doc.save("Bewerbung.pdf");
+        document.getElementById("downloadPdf").addEventListener("click", async () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // SVG als Bild einfügen (falls Base64-Bild vorhanden)
+    const headerImage = "data:image/png;base64,...."; // Hier dein Base64-PNG
+    doc.addImage(headerImage, "PNG", 10, 10, 180, 20); 
+
+    // Anschreiben einfügen
+    doc.setFont("helvetica");
+    doc.setFontSize(12);
+    const text = document.getElementById("coverLetterOutput").textContent;
+    const lines = doc.splitTextToSize(text, 180);
+    doc.text(lines, 10, 40);
+
+    // Bewerbung als PDF speichern
+    const pdfBytes = doc.output("arraybuffer");
+
+    try {
+        // Externe PDFs laden (Lebenslauf & Zeugnisse)
+        const lebenslaufUrl = "https://github.com/MarqueBolayog/bewerbung/raw/main/lebenslauf.pdf";
+        const zeugnisseUrl = "https://github.com/MarqueBolayog/bewerbung/raw/main/zeugnisse.pdf";
+
+        const [lebenslaufResponse, zeugnisseResponse] = await Promise.all([
+            fetch(lebenslaufUrl),
+            fetch(zeugnisseUrl),
+        ]);
+
+        const lebenslaufData = await lebenslaufResponse.arrayBuffer();
+        const zeugnisseData = await zeugnisseResponse.arrayBuffer();
+
+        // Neues PDF erstellen mit PDF-Lib
+        const pdfDoc = await PDFLib.PDFDocument.create();
+        
+        // Bestehende Bewerbung einfügen
+        const bewerbungPdf = await PDFLib.PDFDocument.load(pdfBytes);
+        const bewerbungPages = await pdfDoc.copyPages(bewerbungPdf, bewerbungPdf.getPageIndices());
+        bewerbungPages.forEach((page) => pdfDoc.addPage(page));
+
+        // Externe PDFs einfügen
+        const lebenslaufPdf = await PDFLib.PDFDocument.load(lebenslaufData);
+        const zeugnissePdf = await PDFLib.PDFDocument.load(zeugnisseData);
+        const lebenslaufPages = await pdfDoc.copyPages(lebenslaufPdf, lebenslaufPdf.getPageIndices());
+        const zeugnissePages = await pdfDoc.copyPages(zeugnissePdf, zeugnissePdf.getPageIndices());
+
+        lebenslaufPages.forEach((page) => pdfDoc.addPage(page));
+        zeugnissePages.forEach((page) => pdfDoc.addPage(page));
+
+        // Endgültiges PDF speichern
+        const finalPdfBytes = await pdfDoc.save();
+        const blob = new Blob([finalPdfBytes], { type: "application/pdf" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "Bewerbung.pdf";
+        link.click();
+    } catch (error) {
+        console.error("Fehler beim Erstellen der Bewerbung:", error);
+        alert("Fehler beim Erstellen der Bewerbung. Bitte überprüfe die Links.");
+    }
+});
+
         });
     </script>
 </body>
