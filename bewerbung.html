@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bewerbungsgenerator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         
@@ -65,11 +64,6 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             font-family: 'Calibri', sans-serif;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        .svg-container {
-            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -81,7 +75,7 @@
             <input type="text" id="company_name" name="company_name" required>
 
             <label for="contact_person">Ansprechpartner:</label>
-            <input type="text" id="contact_person" name="contact_person">
+            <input type="text" id="contact_person" name="contact_person" required>
 
             <label for="company_address">Adresse der Firma:</label>
             <input type="text" id="company_address" name="company_address" required>
@@ -93,31 +87,6 @@
         </form>
         
         <h2>Anschreiben:</h2>
-        <div class="svg-container">
-            <svg width="100%" height="100%" viewBox="0 0 2481 432" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
-                <g id="ArtBoard1" transform="matrix(1,0,0,0.123043,0,0)">
-                    <rect x="0" y="0" width="2480.32" height="3507.87" style="fill:none;"/>
-                    <g transform="matrix(1,0,0,8.12725,0,0)">
-                        <g transform="matrix(1,0,0,1,0,9)">
-                            <path d="M296.56,207.74L2205.61,207.74" style="fill:none;stroke:rgb(0,102,255);stroke-width:12.5px;"/>
-                        </g>
-                        <g transform="matrix(1,0,0,1,-9.39591,2.95794)">
-                            <text x="1025.91px" y="193.643px" style="font-family:'Calibri-Bold', 'Calibri', sans-serif;font-weight:700;font-size:62.5px;">Mar<tspan x="1132.85px 1166.38px " y="193.643px 193.643px ">qu</tspan>e Bola<tspan x="1359.22px 1387.76px 1406.89px " y="193.643px 193.643px 193.643px ">y-o</tspan>g</text>
-                        </g>
-                        <g>
-                            <text x="750.17px" y="263.353px" style="font-family:'Calibri-Bold', 'Calibri', sans-serif;font-weight:700;font-size:50px;">Merlin<tspan x="887.816px 924.682px 949.852px " y="263.353px 263.353px 263.353px ">weg</tspan> 3    61231 Bad Nauheim   015731489393</text>
-                            <text x="1010.11px" y="313.353px" style="font-family:'Calibri-Bold', 'Calibri', sans-serif;font-weight:700;font-size:50px;">mar<tspan x="1092.62px 1119.45px " y="313.353px 313.353px ">qu</tspan>e_b@hotmail.de</text>
-                        </g>
-                        <g transform="matrix(1.73594,0,0,1.64592,-751.264,-157.896)">
-                            <ellipse cx="1025.06" cy="247.428" rx="4.244" ry="4.763"/>
-                        </g>
-                    </g>
-                    <g transform="matrix(1.73594,0,0,13.3768,-287.777,-1283.26)">
-                        <ellipse cx="1025.06" cy="247.428" rx="4.244" ry="4.763"/>
-                    </g>
-                </g>
-            </svg>
-        </div>
         <pre id="coverLetterOutput"></pre>
         
         <button type="button" id="downloadPdf">Als PDF herunterladen</button>
@@ -163,6 +132,7 @@ Mein Eintrittsdatum stimme ich gern individuell auf Ihren Bedarf ab und stehe Ih
 
 Auf die Gelegenheit, in einem persönlichen Gespräch mehr über Ihre Erwartungen an mich zu erfahren und Sie von meiner fachlichen Qualifikation und Motivation zu überzeugen, freue ich mich bereits jetzt.
 
+
 Mit freundlichen Grüßen
 
 Marque Bolay-Og
@@ -170,7 +140,6 @@ Marque Bolay-Og
 Anlagen:
 - Lebenslauf
 - Zeugnisse
-
 `;
         }
 
@@ -184,54 +153,15 @@ Anlagen:
             document.getElementById('coverLetterOutput').textContent = coverLetter;
         });
 
-        document.getElementById('downloadPdf').addEventListener('click', async () => {
+        document.getElementById('downloadPdf').addEventListener('click', () => {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-
-            // Anschreiben hinzufügen
-            doc.setFont("helvetica");
+            const headerImg = 'data:image/png;base64,REPLACE_WITH_BASE64_ENCODED_IMAGE';
+            doc.addImage(headerImg, 'PNG', 10, 10, 180, 20);
+            doc.setFont("calibri");
             doc.setFontSize(12);
-            const text = document.getElementById('coverLetterOutput').textContent;
-            const lines = doc.splitTextToSize(text, 180);
-            doc.text(lines, 10, 20);
-
-            // Lebenslauf und Zeugnisse herunterladen und einfügen
-            try {
-                const lebenslaufUrl = "https://github.com/MarqueBolayog/bewerbung/raw/main/lebenslauf.pdf";
-                const zeugnisseUrl = "https://github.com/MarqueBolayog/bewerbung/raw/main/zeugnisse.pdf";
-
-                const lebenslaufResponse = await fetch(lebenslaufUrl);
-                const lebenslaufData = await lebenslaufResponse.arrayBuffer();
-
-                const zeugnisseResponse = await fetch(zeugnisseUrl);
-                const zeugnisseData = await zeugnisseResponse.arrayBuffer();
-
-                // PDF-Lib verwenden, um die Dateien einzubetten
-                const pdfDoc = await PDFLib.PDFDocument.create();
-                const [lebenslaufPdf, zeugnissePdf] = await Promise.all([
-                    PDFLib.PDFDocument.load(lebenslaufData),
-                    PDFLib.PDFDocument.load(zeugnisseData),
-                ]);
-
-                // Seiten aus den PDFs kopieren
-                const lebenslaufPages = await pdfDoc.copyPages(lebenslaufPdf, lebenslaufPdf.getPageIndices());
-                const zeugnissePages = await pdfDoc.copyPages(zeugnissePdf, zeugnissePdf.getPageIndices());
-
-                // Seiten zum Haupt-PDF hinzufügen
-                lebenslaufPages.forEach((page) => pdfDoc.addPage(page));
-                zeugnissePages.forEach((page) => pdfDoc.addPage(page));
-
-                // PDF speichern
-                const pdfBytes = await pdfDoc.save();
-                const blob = new Blob([pdfBytes], { type: "application/pdf" });
-                const link = document.createElement("a");
-                link.href = URL.createObjectURL(blob);
-                link.download = "Bewerbung.pdf";
-                link.click();
-            } catch (error) {
-                console.error("Fehler beim Einbetten der Dateien:", error);
-                alert("Fehler beim Einbetten der Dateien. Bitte überprüfe die Links.");
-            }
+            doc.text(document.getElementById('coverLetterOutput').textContent, 10, 40, { maxWidth: 180, align: "justify" });
+            doc.save("Bewerbung.pdf");
         });
     </script>
 </body>
