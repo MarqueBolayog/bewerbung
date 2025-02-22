@@ -23,6 +23,7 @@
             color: white;
             padding: 30px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .container {
@@ -88,49 +89,105 @@
             gap: 10px;
             margin-top: 20px;
         }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .language-button {
+            padding: 5px 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .language-button:hover {
+            background-color: #004080;
+        }
     </style>
 </head>
 <body>
+    <!-- DSGVO-Popup -->
     <div id="dsgvo-popup" class="popup">
-        <h2>Datenschutz und Cookies</h2>
-        <p>Wir verwenden Cookies für die beste Nutzererfahrung. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+        <h2 data-lang="de">Datenschutz und Cookies</h2>
+        <h2 data-lang="en" style="display: none;">Privacy and Cookies</h2>
+        <p data-lang="de">Wir verwenden Cookies für die beste Nutzererfahrung. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+        <p data-lang="en" style="display: none;">We use cookies for the best user experience. Learn more in our <a href="datenschutz.html">Privacy Policy</a>.</p>
         <div class="popup-buttons">
-            <button onclick="acceptDSGVO()">Akzeptieren</button>
-            <button onclick="declineDSGVO()">Ablehnen</button>
+            <button onclick="acceptDSGVO()" data-lang="de">Akzeptieren</button>
+            <button onclick="acceptDSGVO()" data-lang="en" style="display: none;">Accept</button>
+            <button onclick="declineDSGVO()" data-lang="de">Ablehnen</button>
+            <button onclick="declineDSGVO()" data-lang="en" style="display: none;">Decline</button>
         </div>
     </div>
 
+    <!-- Header -->
     <header>
+        <div class="language-switcher">
+            <button onclick="switchLanguage('de')" class="language-button">DE</button>
+            <button onclick="switchLanguage('en')" class="language-button">EN</button>
+        </div>
         <h1>Marque Bolay-og</h1>
-        <p>Bewerbung als Industriekaufmann</p>
+        <p data-lang="de">Bewerbung als Industriekaufmann</p>
+        <p data-lang="en" style="display: none;">Application as Industrial Clerk</p>
     </header>
 
+    <!-- Hauptinhalt -->
     <main class="container">
         <img src="profilbild.svg" alt="Profilbild" class="profile-img">
-        <h2>Kontakt</h2>
-        <a href="mailto:marque_b@hotmail.de">E-Mail schreiben</a>
-        <a href="tel:+4915731489393">Anrufen</a>
-        <h2>Downloads</h2>
-        <a href="lebenslauf.pdf" download> Lebenslauf </a>
-        <a href="zeugnisse.pdf" download> Zeugnisse </a>
-        <a href="bewerbung.vcf" download> Visitenkarte </a>
-        <h2>Bewerbung</h2>
-        <a href="bewerbung.html">Bewerbungsgenerator</a>
-        <a href="email-vorlage.html" target="_blank">E-Mail-Vorlage verwenden</a>
+        <h2 data-lang="de">Kontakt</h2>
+        <h2 data-lang="en" style="display: none;">Contact</h2>
+        <a href="mailto:marque_b@hotmail.de" data-lang="de">E-Mail schreiben</a>
+        <a href="mailto:marque_b@hotmail.de" data-lang="en" style="display: none;">Send Email</a>
+        <a href="tel:+4915731489393" data-lang="de">Anrufen</a>
+        <a href="tel:+4915731489393" data-lang="en" style="display: none;">Call</a>
+        <h2 data-lang="de">Downloads</h2>
+        <h2 data-lang="en" style="display: none;">Downloads</h2>
+        <a href="lebenslauf.pdf" download data-lang="de">Lebenslauf</a>
+        <a href="lebenslauf.pdf" download data-lang="en" style="display: none;">CV</a>
+        <a href="zeugnisse.pdf" download data-lang="de">Zeugnisse</a>
+        <a href="zeugnisse.pdf" download data-lang="en" style="display: none;">Certificates</a>
+        <a href="bewerbung.vcf" download data-lang="de">Visitenkarte</a>
+        <a href="bewerbung.vcf" download data-lang="en" style="display: none;">vCard</a>
+        <h2 data-lang="de">Bewerbung</h2>
+        <h2 data-lang="en" style="display: none;">Application</h2>
+        <a href="bewerbung.html" data-lang="de">Bewerbungsgenerator</a>
+        <a href="bewerbung.html" data-lang="en" style="display: none;">Application Generator</a>
+        <a href="email-vorlage.html" target="_blank" data-lang="de">E-Mail-Vorlage verwenden</a>
+        <a href="email-vorlage.html" target="_blank" data-lang="en" style="display: none;">Use Email Template</a>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Marque Bolay-og. Alle Rechte vorbehalten.</p>
-        <p><a href="datenschutz.html">Datenschutzerklärung</a></p>
+        <p data-lang="de">&copy; 2025 Marque Bolay-og. Alle Rechte vorbehalten.</p>
+        <p data-lang="en" style="display: none;">&copy; 2025 Marque Bolay-og. All rights reserved.</p>
+        <p><a href="datenschutz.html" data-lang="de">Datenschutzerklärung</a></p>
+        <p><a href="datenschutz.html" data-lang="en" style="display: none;">Privacy Policy</a></p>
     </footer>
 
+    <!-- JavaScript für Sprachumschaltung und DSGVO-Popup -->
     <script>
-        function showDSGVOPopup() {
-            if (!localStorage.getItem('dsgvo-accepted')) {
-                document.getElementById('dsgvo-popup').style.display = 'block';
-            }
+        // Funktion zum Wechseln der Sprache
+        function switchLanguage(lang) {
+            // Alle Elemente mit data-lang-Attribut durchlaufen
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.style.display = ''; // Zeige die Elemente der ausgewählten Sprache an
+                } else {
+                    element.style.display = 'none'; // Verstecke die Elemente der anderen Sprache
+                }
+            });
         }
 
+        // Standardmäßig Deutsch anzeigen
+        switchLanguage('de');
+
+        // DSGVO-Funktionen
         function acceptDSGVO() {
             localStorage.setItem('dsgvo-accepted', 'true');
             document.getElementById('dsgvo-popup').style.display = 'none';
@@ -139,10 +196,15 @@
         function declineDSGVO() {
             localStorage.setItem('dsgvo-accepted', 'false');
             document.getElementById('dsgvo-popup').style.display = 'none';
-            alert('Sie haben Cookies abgelehnt.');
+            alert(localStorage.getItem('dsgvo-accepted') === 'de' ? 'Sie haben Cookies abgelehnt.' : 'You have declined cookies.');
         }
 
-        document.addEventListener('DOMContentLoaded', showDSGVOPopup);
+        // DSGVO-Popup anzeigen, wenn die Seite geladen wird
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('dsgvo-accepted')) {
+                document.getElementById('dsgvo-popup').style.display = 'block';
+            }
+        });
     </script>
 </body>
 </html>
