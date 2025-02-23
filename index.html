@@ -92,9 +92,8 @@
 
         .language-switcher {
             position: absolute;
-            top: 50%; /* Vertikal zentrieren */
+            top: 20px; /* Position oben */
             right: 20px; /* Abstand vom rechten Rand */
-            transform: translateY(-50%); /* Genau vertikal zentrieren */
             display: flex;
             gap: 10px; /* Abstand zwischen den Buttons */
         }
@@ -124,7 +123,7 @@
         /* Media Query für mobile Geräte */
         @media (max-width: 600px) {
             .language-switcher {
-                top: 20px; /* Position nach oben verschieben */
+                top: 10px; /* Position nach oben verschieben */
                 right: 10px; /* Weniger Abstand vom rechten Rand */
                 flex-direction: column; /* Flaggen untereinander anordnen */
                 gap: 5px; /* Weniger Abstand zwischen den Flaggen */
@@ -186,7 +185,7 @@
         <a href="zeugnisse.pdf" download data-lang="en" style="display: none;">Certificates</a>
         <a href="bewerbung.vcf" download data-lang="de">Visitenkarte</a>
         <a href="bewerbung.vcf" download data-lang="en" style="display: none;">vCard</a>
-        
+   
     </main>
 
     <!-- Footer -->
