@@ -92,8 +92,9 @@
 
         .language-switcher {
             position: absolute;
-            top: 20px; /* Position oben */
+            top: 50%; /* Vertikal zentrieren */
             right: 20px; /* Abstand vom rechten Rand */
+            transform: translateY(-50%); /* Genau vertikal zentrieren */
             display: flex;
             gap: 10px; /* Abstand zwischen den Buttons */
         }
@@ -123,9 +124,7 @@
         /* Media Query für mobile Geräte */
         @media (max-width: 600px) {
             .language-switcher {
-                top: 10px; /* Position nach oben verschieben */
                 right: 10px; /* Weniger Abstand vom rechten Rand */
-                flex-direction: column; /* Flaggen untereinander anordnen */
                 gap: 5px; /* Weniger Abstand zwischen den Flaggen */
             }
 
@@ -154,8 +153,8 @@
     <!-- Header -->
     <header>
         <h1>Marque Bolay-og</h1>
-        <p data-lang="de">Bewerbung als Industriekaufmann</p>
-        <p data-lang="en" style="display: none;">Application as Industrial Clerk</p>
+        <p data-lang="de">Ein Engagement für Ihr Wachstum in Wirtschaft & Logistik</p>
+        <p data-lang="en" style="display: none;">A Commitment to Your Growth in Business & Logistics</p>
         <!-- Sprachumschaltung mit Flaggen -->
         <div class="language-switcher">
             <button onclick="switchLanguage('de')" class="language-button">
@@ -185,7 +184,7 @@
         <a href="zeugnisse.pdf" download data-lang="en" style="display: none;">Certificates</a>
         <a href="bewerbung.vcf" download data-lang="de">Visitenkarte</a>
         <a href="bewerbung.vcf" download data-lang="en" style="display: none;">vCard</a>
-   
+        
     </main>
 
     <!-- Footer -->
