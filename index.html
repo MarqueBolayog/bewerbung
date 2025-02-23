@@ -120,6 +120,21 @@
         .language-button img:hover {
             transform: scale(1.1); /* Leichte Vergrößerung beim Hover */
         }
+
+        /* Media Query für mobile Geräte */
+        @media (max-width: 600px) {
+            .language-switcher {
+                top: 20px; /* Position nach oben verschieben */
+                right: 10px; /* Weniger Abstand vom rechten Rand */
+                flex-direction: column; /* Flaggen untereinander anordnen */
+                gap: 5px; /* Weniger Abstand zwischen den Flaggen */
+            }
+
+            .language-button img {
+                width: 20px; /* Kleinere Flaggen für mobile Geräte */
+                height: 20px;
+            }
+        }
     </style>
 </head>
 <body>
