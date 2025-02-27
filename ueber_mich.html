@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über mich – Marque Bolay-og</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            text-align: left;
+        }
+
+        h1, h2, h3 {
+            color: #007BFF;
+        }
+
+        a, button {
+            display: inline-block;
+            padding: 12px 18px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            margin: 10px 5px;
+        }
+
+        a:hover, button:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            background: #007BFF;
+            color: white;
+            padding: 15px 0;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .language-button img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid white;
+            transition: transform 0.2s ease;
+        }
+
+        .language-button img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            .language-switcher {
+                right: 10px;
+                gap: 5px;
+            }
+
+            .language-button img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Über mich – Marque Bolay-og</h1>
+        <div class="language-switcher">
+            <button onclick="switchLanguage('de')" class="language-button">
+                <img src="germany-flag.png" alt="Deutsch" title="Deutsch">
+            </button>
+            <button onclick="switchLanguage('en')" class="language-button">
+                <img src="uk-flag.png" alt="English" title="English">
+            </button>
+        </div>
+    </header>
+
+    <!-- Hauptinhalt -->
+    <main class="container">
+        <!-- Abschnitt 1: Wer bin ich? / Who am I? -->
+        <div class="section">
+            <h2 data-lang="de">🔹 Wer bin ich?</h2>
+            <h2 data-lang="en" style="display: none;">🔹 Who am I?</h2>
+            <img src="placeholder-wer-bin-ich.jpg" alt="Wer bin ich? / Who am I?">
+            <p data-lang="de">
+                <em>"Ich setze mich mit Herzblut dafür ein, bestehende Projekte effizient abzuschließen und neue Vorhaben strategisch voranzutreiben. Mein Fokus liegt darauf, Abläufe zu optimieren, Kosten zu senken und messbare Umsatzsteigerungen zu erzielen. Ich bringe nicht nur kaufmännisches Know-how mit, sondern auch unternehmerisches Denken – denn wirtschaftlicher Erfolg entsteht durch kluge Prozesse, schnelle Entscheidungen und engagierte Mitarbeiter. Lassen Sie uns gemeinsam neue Erfolge schaffen!"</em>
+            </p>
+            <p data-lang="en" style="display: none;">
+                <em>"I am passionate about efficiently completing existing projects and strategically driving new initiatives. My focus is on optimizing processes, reducing costs, and achieving measurable revenue growth. I bring not only commercial expertise but also an entrepreneurial mindset – because economic success is created through smart processes, quick decisions, and engaged employees. Let's create new successes together!"</em>
+            </p>
+        </div>
+
+        <!-- Abschnitt 2: Meine Stärken & Soft Skills / My Strengths & Soft Skills -->
+        <div class="section">
+            <h2 data-lang="de">🔹 Meine Stärken & Soft Skills</h2>
+            <h2 data-lang="en" style="display: none;">🔹 My Strengths & Soft Skills</h2>
+            <img src="placeholder-staerken.jpg" alt="Meine Stärken / My Strengths">
+            <ul data-lang="de">
+                <li>✔ <strong>Analytisches Denken</strong> – Prozesse durchleuchten & optimieren</li>
+                <li>✔ <strong>Eigeninitiative & Lösungsorientierung</strong> – Probleme schnell & effizient lösen</li>
+                <li>✔ <strong>Schnelle Auffassungsgabe</strong> – neue Systeme & Arbeitsweisen rasch verinnerlichen</li>
+                <li>✔ <strong>Strukturierte Arbeitsweise</strong> – von der Planung bis zur Umsetzung</li>
+                <li>✔ <strong>Multitasking & Stressresistenz</strong> – gelernt in der Gastronomie & Logistik</li>
+                <li>✔ <strong>Teamfähigkeit & Kommunikation</strong> – stark in Zusammenarbeit & Kundenkontakt</li>
+                <li>✔ <strong>Einrichtung & Nutzung von CRM- & Fakturierungsprogrammen</strong> – Fakturama (Free), Hyreka</li>
+                <li>✔ <strong>Automatisierung von Arbeitsprozessen</strong> – Effizienzsteigerung durch digitale Tools</li>
+            </ul>
+            <ul data-lang="en" style="display: none;">
+                <li>✔ <strong>Analytical Thinking</strong> – Analyze and optimize processes</li>
+                <li>✔ <strong>Initiative & Solution-Oriented</strong> – Solve problems quickly and efficiently</li>
+                <li>✔ <strong>Quick Comprehension</strong> – Quickly master new systems and workflows</li>
+                <li>✔ <strong>Structured Work Approach</strong> – From planning to implementation</li>
+                <li>✔ <strong>Multitasking & Stress Resistance</strong> – Learned in gastronomy and logistics</li>
+                <li>✔ <strong>Teamwork & Communication</strong> – Strong in collaboration and customer interaction</li>
+                <li>✔ <strong>Setup & Use of CRM & Invoicing Programs</strong> – Fakturama (Free), Hyreka</li>
+                <li>✔ <strong>Automation of Work Processes</strong> – Improve efficiency through digital tools</li>
+            </ul>
+        </div>
+
+        <!-- Abschnitt 3: Fachliche Kompetenzen & Technische Skills / Professional Competencies & Technical Skills -->
+        <div class="section">
+            <h2 data-lang="de">🔹 Fachliche Kompetenzen & Technische Skills</h2>
+            <h2 data-lang="en" style="display: none;">🔹 Professional Competencies & Technical Skills</h2>
+            <img src="placeholder-technische-skills.jpg" alt="Technische Skills / Technical Skills">
+            <h3 data-lang="de">📊 Kaufmännische & Logistik-Kenntnisse</h3>
+            <h3 data-lang="en" style="display: none;">📊 Commercial & Logistics Knowledge</h3>
+            <ul data-lang="de">
+                <li><strong>Einkauf & Materialwirtschaft</strong> – Bestellwesen, Lieferantenmanagement</li>
+                <li><strong>Rechnungswesen & Controlling</strong> – Kosten- & Leistungsrechnung, Finanzbuchhaltung</li>
+                <li><strong>Logistik & Lagerwirtschaft</strong> – Disposition, Wareneingang, Bestandsmanagement</li>
+                <li><strong>Marketing & Vertrieb</strong> – Kundenmanagement, Marktanalysen, Preisstrategien</li>
+                <li><strong>Personalwirtschaft & Arbeitsrecht</strong> – Verträge, Lohnabrechnung, Mitarbeiterplanung</li>
+            </ul>
+            <ul data-lang="en" style="display: none;">
+                <li><strong>Procurement & Material Management</strong> – Order processing, supplier management</li>
+                <li><strong>Accounting & Controlling</strong> – Cost & performance accounting, financial accounting</li>
+                <li><strong>Logistics & Warehouse Management</strong> – Disposition, goods receipt, inventory management</li>
+                <li><strong>Marketing & Sales</strong> – Customer management, market analysis, pricing strategies</li>
+                <li><strong>Human Resources & Labor Law</strong> – Contracts, payroll, employee planning</li>
+            </ul>
+
+            <h3 data-lang="de">💻 IT & Web-Entwicklung</h3>
+            <h3 data-lang="en" style="display: none;">💻 IT & Web Development</h3>
+            <ul data-lang="de">
+                <li><strong>CRM- & Fakturierungssysteme:</strong> Fakturama (Free), Hyreka</li>
+                <li><strong>CMS-Systeme:</strong> WordPress, Joomla – Erstellung & Verwaltung von Websites</li>
+                <li><strong>Web-Technologien:</strong> HTML, CSS, JavaScript – einfache Websites & Anpassungen</li>
+                <li><strong>ERP & Buchhaltungssoftware:</strong> SAP R/3-LE, SAP S/4 Hana, DATEV</li>
+                <li><strong>MS Office Suite:</strong> Word, Excel, PowerPoint (fortgeschrittene Kenntnisse)</li>
+            </ul>
+            <ul data-lang="en" style="display: none;">
+                <li><strong>CRM & Invoicing Systems:</strong> Fakturama (Free), Hyreka</li>
+                <li><strong>CMS Systems:</strong> WordPress, Joomla – Creation & management of websites</li>
+                <li><strong>Web Technologies:</strong> HTML, CSS, JavaScript – Simple websites & customizations</li>
+                <li><strong>ERP & Accounting Software:</strong> SAP R/3-LE, SAP S/4 Hana, DATEV</li>
+                <li><strong>MS Office Suite:</strong> Word, Excel, PowerPoint (advanced knowledge)</li>
+            </ul>
+
+            <h3 data-lang="de">🎨 Grafik & Design</h3>
+            <h3 data-lang="en" style="display: none;">🎨 Graphics & Design</h3>
+            <ul data-lang="de">
+                <li><strong>Affinity Designer & Affinity Photo</strong> – professionelle Bildbearbeitung & Grafikdesign</li>
+                <li><strong>Adobe Cloud (Photoshop, Illustrator, InDesign)</strong> – Design & Layout</li>
+                <li><strong>GIMP & Inkscape</strong> – Open-Source-Alternativen für Fotobearbeitung & Vektorgrafiken</li>
+            </ul>
+            <ul data-lang="en" style="display: none;">
+                <li><strong>Affinity Designer & Affinity Photo</strong> – Professional image editing & graphic design</li>
+                <li><strong>Adobe Cloud (Photoshop, Illustrator, InDesign)</strong> – Design & layout</li>
+                <li><strong>GIMP & Inkscape</strong> – Open-source alternatives for photo editing & vector graphics</li>
+            </ul>
+        </div>
+
+        <!-- Abschnitt 4: Praktische Erfahrung / Practical Experience -->
+        <div class="section">
+            <h2 data-lang="de">🔹 Praktische Erfahrung</h2>
+            <h2 data-lang="en" style="display: none;">🔹 Practical Experience</h2>
+            <img src="placeholder-erfahrung.jpg" alt="Praktische Erfahrung / Practical Experience">
+            <h3 data-lang="de">📌 Business- & Konzeptentwicklung: Planung eines Diner-Restaurants (2021)</h3>
+            <h3 data-lang="en" style="display: none;">📌 Business & Concept Development: Planning a Diner Restaurant (2021)</h3>
+            <p data-lang="de">
+                <strong>Projektleitung für ein geplantes Diner-Konzept in Bad Nauheim</strong><br>
+                ✔ Entwicklung des Businessplans – Kalkulation, Finanzplanung & Marktanalyse<br>
+                ✔ Immobiliensuche & Standortanalyse – Besichtigung geeigneter Geschäftsflächen<br>
+                ✔ Kreatives Konzept & Design – Gestaltung von Raumaufteilung, CI & Marketingstrategie<br>
+                ✔ Zusammenarbeit mit Stadt Bad Nauheim – Vorstellung des Projekts & Genehmigungen<br>
+                ✔ Planung von Umbau & Einrichtung – Kostenkalkulation & Verhandlungen mit Lieferanten
+            </p>
+            <p data-lang="en" style="display: none;">
+                <strong>Project management for a planned diner concept in Bad Nauheim</strong><br>
+                ✔ Development of the business plan – Calculation, financial planning & market analysis<br>
+                ✔ Property search & location analysis – Inspection of suitable business premises<br>
+                ✔ Creative concept & design – Design of space allocation, CI & marketing strategy<br>
+                ✔ Collaboration with the city of Bad Nauheim – Presentation of the project & approvals<br>
+                ✔ Planning of renovation & setup – Cost calculation & negotiations with suppliers
+            </p>
+            <p data-lang="de">
+                <em>Herausforderung & Learnings:</em> Obwohl das Projekt aus finanziellen Gründen nicht umgesetzt wurde, konnte ich wertvolle Erfahrungen im Bereich Geschäftsplanung, Standortanalyse, Konzeptentwicklung und Behördenkommunikation sammeln. Diese Fähigkeiten setze ich heute in wirtschaftlichen & logistischen Projekten ein.
+            </p>
+            <p data-lang="en" style="display: none;">
+                <em>Challenge & Learnings:</em> Although the project was not implemented due to financial reasons, I gained valuable experience in business planning, location analysis, concept development, and communication with authorities. I use these skills today in economic & logistics projects.
+            </p>
+
+            <h3 data-lang="de">📌 Industriekaufmann (Umschulung, 2021-2023) – IAL Institut für angewandte Logistik GmbH, Frankfurt</h3>
+            <h3 data-lang="en" style="display: none;">📌 Industrial Clerk (Retraining, 2021-2023) – IAL Institute for Applied Logistics GmbH, Frankfurt</h3>
+            <p data-lang="de">
+                <strong>Praktikum bei City Getränke, Frankfurt</strong><br>
+                ✔ Einkauf & Beschaffung<br>
+                ✔ Lagerverwaltung & Logistikkoordination<br>
+                ✔ Kundenbetreuung & Fakturierung (CRM-Systeme)<br>
+                ✔ Entwicklung von Marketingstrategien
+            </p>
+            <p data-lang="en" style="display: none;">
+                <strong>Internship at City Getränke, Frankfurt</strong><br>
+                ✔ Procurement & purchasing<br>
+                ✔ Warehouse management & logistics coordination<br>
+                ✔ Customer service & invoicing (CRM systems)<br>
+                ✔ Development of marketing strategies
+            </p>
+
+            <h3 data-lang="de">📌 Nebenjob: Chaplin Bar, Frankfurt (08/2021 – 08/2023)</h3>
+            <h3 data-lang="en" style="display: none;">📌 Side Job: Chaplin Bar, Frankfurt (08/2021 – 08/2023)</h3>
+            <p data-lang="de">
+                <strong>Schwerpunkt: Gin-Bar & gehobene Gastronomie</strong><br>
+                ✔ Service & Kundenbetreuung<br>
+                ✔ Barkeeper – Zubereitung von Cocktails, Signature Drinks & hausgemachten Limonaden<br>
+                ✔ Küche – Zubereitung kleiner Tapas-Gerichte ohne Convenience-Produkte<br>
+                ✔ Arbeiten unter hoher Belastung & Zeitdruck
+            </p>
+            <p data-lang="en" style="display: none;">
+                <strong>Focus: Gin Bar & upscale gastronomy</strong><br>
+                ✔ Service & customer care<br>
+                ✔ Bartender – Preparation of cocktails, signature drinks & homemade lemonades<br>
+                ✔ Kitchen – Preparation of small tapas dishes without convenience products<br>
+                ✔ Working under high pressure & time constraints
+            </p>
+            <p data-lang="de">
+                <em>Was mir dieser Job gebracht hat:</em><br>
+                ✅ <strong>Stressresistenz & Multitasking-Fähigkeit</strong> – Wer in der Gastro war, weiß, was Druck bedeutet.<br>
+                ✅ <strong>Schnelle Entscheidungsfähigkeit</strong> – Gäste erwarten Top-Qualität in kürzester Zeit.<br>
+                ✅ <strong>Kommunikationsstärke & Teamarbeit</strong> – Reibungslose Abläufe unter Stress sind nur im Team möglich.<br>
+                ✅ <strong>Verkaufstalent & Kundenorientierung</strong> – Upselling & perfekte Beratung gehören zur Gastro dazu.
+            </p>
+            <p data-lang="en" style="display: none;">
+                <em>What this job taught me:</em><br>
+                ✅ <strong>Stress resistance & multitasking ability</strong> – Those who have worked in gastronomy know what pressure means.<br>
+                ✅ <strong>Quick decision-making</strong> – Guests expect top quality in the shortest time.<br>
+                ✅ <strong>Communication skills & teamwork</strong> – Smooth operations under stress are only possible in a team.<br>
+                ✅ <strong>Sales talent & customer orientation</strong> – Upselling & perfect advice are part of gastronomy.
+            </p>
+
+            <h3 data-lang="de">📌 Maschinen- & Anlagenführer (2008-2020) – ContiTech Techno-Chemie GmbH, Karben</h3>
+            <h3 data-lang="en" style="display: none;">📌 Machine & Plant Operator (2008-2020) – ContiTech Techno-Chemie GmbH, Karben</h3>
+            <p data-lang="de">
+                ✔ Produktionsoptimierung & Qualitätskontrolle<br>
+                ✔ Aufbau neuer Fertigungslinien<br>
+                ✔ Prozessverbesserungen
+            </p>
+            <p data-lang="en" style="display: none;">
+                ✔ Production optimization & quality control<br>
+                ✔ Setup of new production lines<br>
+                ✔ Process improvements
+            </p>
+        </div>
+
+        <!-- Abschnitt 5: Warum ich der richtige Kandidat bin? / Why I am the right candidate? -->
+        <div class="section">
+            <h2 data-lang="de">🔹 Warum ich der richtige Kandidat bin?</h2>
+            <h2 data-lang="en" style="display: none;">🔹 Why I am the right candidate?</h2>
+            <img src="placeholder-kandidat.jpg" alt="Warum ich? / Why me?">
+            <ul data-lang="de">
+                <li>👉 <strong>Unternehmerisches Denken</strong> – Ich sehe über meinen Aufgabenbereich hinaus & suche immer nach Optimierungspotenzial.</li>
+                <li>👉 <strong>Flexibilität & Vielseitigkeit</strong> – Von kaufmännischen Prozessen über IT bis hin zu Grafik & Webdesign – ich bringe ein breites Spektrum mit.</li>
+                <li>👉 <strong>Planungs- & Konzeptstärke</strong> – Durch meine Erfahrung im Geschäftsaufbau & Projektmanagement bin ich strukturiert & lösungsorientiert.</li>
+                <li>👉 <strong>Direkt einsetzbar & motiviert</strong> – Mit fundiertem Wissen aus Theorie & Praxis kann ich schnell Verantwortung übernehmen.</li>
+            </ul>
+            <ul data-lang="en" style="display: none;">
+                <li>👉 <strong>Entrepreneurial Thinking</strong> – I look beyond my tasks & always seek optimization potential.</li>
+                <li>👉 <strong>Flexibility & Versatility</strong> – From commercial processes to IT and graphic & web design – I bring a broad spectrum.</li>
+                <li>👉 <strong>Planning & Concept Strength</strong> – Through my experience in business setup & project management, I am structured & solution-oriented.</li>
+                <li>👉 <strong>Directly deployable & motivated</strong> – With solid knowledge from theory & practice, I can quickly take responsibility.</li>
+            </ul>
+        </div>
+
+        <!-- Abschnitt 6: Kontakt & Lebenslauf / Contact & CV -->
+        <div class="section">
+            <h2 data-lang="de">🔹 Kontakt & Lebenslauf</h2>
+            <h2 data-lang="en" style="display: none;">🔹 Contact & CV</h2>
+            <p data-lang="de">
+                <strong>Interesse geweckt? Lassen Sie uns sprechen!</strong><br>
+                📥 <a href="lebenslauf.pdf" download>Lebenslauf herunterladen</a><br>
+                📞 <a href="tel:+49123456789">Kontakt aufnehmen</a>
+            </p>
+            <p data-lang="en" style="display: none;">
+                <strong>Interested? Let's talk!</strong><br>
+                📥 <a href="cv.pdf" download>Download CV</a><br>
+                📞 <a href="tel:+49123456789">Contact me</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p data-lang="de">© 2023 Marque Bolay-og. Alle Rechte vorbehalten.</p>
+        <p data-lang="en" style="display: none;">© 2023 Marque Bolay-og. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function switchLanguage(lang) {
+            const elements = document.querySelectorAll(`[data-lang]`);
+            elements.forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.style.display = 'block';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
