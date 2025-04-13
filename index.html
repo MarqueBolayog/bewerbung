@@ -3,30 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bewerbung Marque Bolay-og</title>
+    <title>Marc Quebbemann | Bewerbung</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Danke, dass Sie sich meinen Quellcode anschauen! -->
     <style>
+        :root {
+            --primary: #007BFF;
+            --secondary: #0056b3;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --accent: #e74c3c;
+            --skill-color: #1a73e8;
+        }
+        
         body {
             font-family: 'Roboto', sans-serif;
-            text-align: center;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
+            color: #333;
             background-color: #f9f9f9;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            color: #333;
         }
-
+        
+        /* Header */
         header {
-            background: linear-gradient(135deg, #007BFF, #0056b3);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 30px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
         }
-
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -36,68 +54,70 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             flex: 1;
         }
-
-        .profile-img {
-            width: 155px;
-            height: 155px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 4px solid #007BFF;
+        
+        /* Logo */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
-
-        a, button {
-            display: block;
-            padding: 12px 18px;
-            background: #007BFF;
+        
+        /* Navigation */
+        .desktop-nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .desktop-nav a {
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-            margin: 10px auto;
-            max-width: 250px;
+            font-weight: 500;
+            transition: opacity 0.3s;
         }
-
-        a:hover, button:hover {
-            background: #0056b3;
+        
+        .desktop-nav a:hover {
+            opacity: 0.8;
         }
-
-        footer {
-            background: #007BFF;
-            color: white;
-            padding: 15px 0;
-            margin-top: auto;
-            text-align: center;
-        }
-
-        .popup {
+        
+        /* Mobile Menu */
+        .mobile-menu-button {
             display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background: var(--secondary);
+            padding: 1rem;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
             z-index: 1000;
         }
-
-        .popup-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
+        
+        .mobile-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
         }
-
+        
         .language-switcher {
-            position: absolute;
-            top: 50%; /* Vertikal zentrieren */
-            right: 20px; /* Abstand vom rechten Rand */
-            transform: translateY(-50%); /* Genau vertikal zentrieren */
             display: flex;
-            gap: 10px; /* Abstand zwischen den Buttons */
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
         }
 
         .language-button {
@@ -111,28 +131,280 @@
         }
 
         .language-button img {
-            width: 24px; /* Größe der Flaggen */
+            width: 24px;
             height: 24px;
-            border-radius: 50%; /* Runde Flaggen */
-            border: 2px solid white; /* Weißer Rand für bessere Sichtbarkeit */
+            border-radius: 50%;
+            border: 2px solid white;
             transition: transform 0.2s ease;
         }
 
         .language-button img:hover {
-            transform: scale(1.1); /* Leichte Vergrößerung beim Hover */
+            transform: scale(1.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--light);
+            margin: 1rem 0;
+        }
+        
+        /* Buttons */
+        .cta-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button.accent {
+            background: var(--accent);
+            color: white;
+        }
+        
+        /* Skills Section */
+        .skills-section {
+            padding: 2rem 0;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-tag {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Downloads Section */
+        .downloads-section {
+            padding: 2rem 0;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .download-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .download-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 15px 0;
+            margin-top: auto;
+            text-align: center;
+        }
+        
+        /* DSGVO Popup */
+        .popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            max-width: 400px;
+            display: none;
+        }
+
+        .popup h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .popup p {
+            margin: 10px 0;
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .popup-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .popup-buttons button.accept {
+            background: white;
+            color: var(--primary);
+        }
+
+        .popup-buttons button.decline {
+            background: var(--accent);
+            color: white;
+        }
+
+        .popup-buttons button:hover {
+            transform: translateY(-2px);
         }
 
         /* Media Query für mobile Geräte */
         @media (max-width: 600px) {
             .language-switcher {
-                right: 10px; /* Weniger Abstand vom rechten Rand */
-                gap: 5px; /* Weniger Abstand zwischen den Flaggen */
+                right: 10px;
+                gap: 5px;
             }
 
             .language-button img {
-                width: 20px; /* Kleinere Flaggen für mobile Geräte */
+                width: 20px;
                 height: 20px;
             }
+        }
+        
+        /* Mobile Version */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 15px;
+            }
+            
+            .logo {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+                order: 1;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-button {
+                display: block;
+                order: 0;
+            }
+            
+            .language-switcher {
+                order: 2;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1rem;
+            }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+                margin: 2rem auto;
+            }
+            
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 280px;
+                margin: 0.5rem 0;
+            }
+            
+            .skills-container {
+                justify-content: center;
+            }
+            
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Sprachumschaltung */
+        [data-lang] {
+            display: none;
+        }
+        
+        [data-lang="de"] {
+            display: block;
         }
     </style>
 </head>
@@ -141,100 +413,201 @@
     <div id="dsgvo-popup" class="popup">
         <h2 data-lang="de">Datenschutz und Cookies</h2>
         <h2 data-lang="en" style="display: none;">Privacy and Cookies</h2>
-        <p data-lang="de">Wir verwenden Cookies für die beste Nutzererfahrung. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-        <p data-lang="en" style="display: none;">We use cookies for the best user experience. Learn more in our <a href="datenschutz.html">Privacy Policy</a>.</p>
+        <p data-lang="de">Wir verwenden Cookies für die beste Nutzererfahrung. Mehr dazu in unserer <a href="datenschutz.html" style="color: var(--light);">Datenschutzerklärung</a>.</p>
+        <p data-lang="en" style="display: none;">We use cookies for the best user experience. Learn more in our <a href="datenschutz.html" style="color: var(--light);">Privacy Policy</a>.</p>
         <div class="popup-buttons">
-            <button onclick="acceptDSGVO()" data-lang="de">Akzeptieren</button>
-            <button onclick="acceptDSGVO()" data-lang="en" style="display: none;">Accept</button>
-            <button onclick="declineDSGVO()" data-lang="de">Ablehnen</button>
-            <button onclick="declineDSGVO()" data-lang="en" style="display: none;">Decline</button>
+            <button class="accept" onclick="acceptDSGVO()" data-lang="de">Akzeptieren</button>
+            <button class="accept" onclick="acceptDSGVO()" data-lang="en" style="display: none;">Accept</button>
+            <button class="decline" onclick="declineDSGVO()" data-lang="de">Ablehnen</button>
+            <button class="decline" onclick="declineDSGVO()" data-lang="en" style="display: none;">Decline</button>
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header mit Navigation -->
     <header>
-        <h1>Marque Bolay-og</h1>
-        <p data-lang="de">Ein Engagement für Ihr Wachstum <br> in Wirtschaft & Logistik</p>
-        <p data-lang="en" style="display: none;">A Commitment to Your Growth <br> in Business & Logistics</p>
-        <!-- Sprachumschaltung mit Flaggen -->
-        <div class="language-switcher">
-            <button onclick="switchLanguage('de')" class="language-button">
-                <img src="germany-flag.png" alt="Deutsch" title="Deutsch">
-            </button>
-            <button onclick="switchLanguage('en')" class="language-button">
-                <img src="uk-flag.png" alt="English" title="English">
-            </button>
+        <div class="header-content">
+            <button class="mobile-menu-button">☰</button>
+            <div class="logo">Marque Bolay-og</div>
+            <nav class="desktop-nav">
+                <a href="#about" data-lang="de">Über mich</a>
+                <a href="#about" data-lang="en">About</a>
+                <a href="#skills" data-lang="de">Fähigkeiten</a>
+                <a href="#skills" data-lang="en">Skills</a>
+                <a href="#downloads" data-lang="de">Downloads</a>
+                <a href="#downloads" data-lang="en">Downloads</a>
+                <a href="#contact" data-lang="de">Kontakt</a>
+                <a href="#contact" data-lang="en">Contact</a>
+            </nav>
+            <div class="language-switcher">
+                <button class="language-button active" data-lang="de">
+                    <img src="germany-flag.png" alt="Deutsch" title="Deutsch">
+                </button>
+                <button class="language-button" data-lang="en">
+                    <img src="uk-flag.png" alt="English" title="English">
+                </button>
+            </div>
         </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="#about" data-lang="de">Über mich</a>
+            <a href="#about" data-lang="en">About</a>
+            <a href="#skills" data-lang="de">Fähigkeiten</a>
+            <a href="#skills" data-lang="en">Skills</a>
+            <a href="#downloads" data-lang="de">Downloads</a>
+            <a href="#downloads" data-lang="en">Downloads</a>
+            <a href="#contact" data-lang="de">Kontakt</a>
+            <a href="#contact" data-lang="en">Contact</a>
+        </nav>
     </header>
-
+    
     <!-- Hauptinhalt -->
     <main class="container">
-        <img src="profilbild.svg" alt="Profilbild" class="profile-img">
-        <h2 data-lang="de">Kontakt</h2>
-        <h2 data-lang="en" style="display: none;">Contact</h2>
-        <a href="mailto:marque_b@hotmail.de" data-lang="de">E-Mail schreiben</a>
-        <a href="mailto:marque_b@hotmail.de" data-lang="en" style="display: none;">Send Email</a>
-        <a href="tel:+4915731489393" data-lang="de">Anrufen</a>
-        <a href="tel:+4915731489393" data-lang="en" style="display: none;">Call</a>
-        <h2 data-lang="de">Downloads</h2>
-        <h2 data-lang="en" style="display: none;">Downloads</h2>
-        <!-- Dynamischer Download-Link für den Lebenslauf -->
-        <a id="cv-download" href="lebenslauf.pdf" download data-lang="de">Lebenslauf</a>
-        <a id="cv-download" href="cv.pdf" download data-lang="en" style="display: none;">CV</a>
-        <a href="zeugnisse.pdf" download data-lang="de">Zeugnisse</a>
-        <a href="zeugnisse.pdf" download data-lang="en" style="display: none;">Certificates</a>
-        <a href="sap.pdf" download data-lang="de">SAP Zertifikat</a>
-        <a href="sap.pdf" download data-lang="en" style="display: none;">SAP Certification</a>
-        <a href="datev.pdf" download data-lang="de">DATEV Zertifikat</a>
-        <a href="datev.pdf" download data-lang="en" style="display: none;">DATEV Certification</a>
-        <a href="bewerbung.vcf" download data-lang="de">Visitenkarte</a>
-        <a href="bewerbung.vcf" download data-lang="en" style="display: none;">vCard</a>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-lang="de">Bewerbung als [Zielposition]</h1>
+                <h1 data-lang="en">Application for [Target Position]</h1>
+                <p class="subtitle" data-lang="de">[Kurze professionelle Zusammenfassung]</p>
+                <p class="subtitle" data-lang="en">[Short professional summary]</p>
+                <p data-lang="de">Mit [X Jahren] Erfahrung in [Fachgebiet] und Expertise in [Schlüsseltechnologien].</p>
+                <p data-lang="en">With [X years] of experience in [Field] and expertise in [Key Technologies].</p>
+                <div class="cta-container">
+                    <a href="#contact" class="cta-button" data-lang="de">Kontakt aufnehmen</a>
+                    <a href="#contact" class="cta-button" data-lang="en">Contact Me</a>
+                    <a href="#downloads" class="cta-button accent" data-lang="de">Unterlagen herunterladen</a>
+                    <a href="#downloads" class="cta-button accent" data-lang="en">Download Documents</a>
+                </div>
+            </div>
+            <img src="profilbild.svg" alt="Marque Bolay-og" class="profile-img">
+        </section>
         
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <h2 data-lang="de">Meine Fähigkeiten</h2>
+            <h2 data-lang="en">My Skills</h2>
+            <div class="skills-container">
+                <span class="skill-tag">HTML5/CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag" data-lang="de">Agile Methoden</span>
+                <span class="skill-tag" data-lang="en">Agile Methods</span>
+                <span class="skill-tag" data-lang="de">Projektmanagement</span>
+                <span class="skill-tag" data-lang="en">Project Management</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag" data-lang="de">Datenanalyse</span>
+                <span class="skill-tag" data-lang="en">Data Analysis</span>
+                <span class="skill-tag">SAP</span>
+                <span class="skill-tag">DATEV</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">SQL</span>
+            </div>
+        </section>
+        
+        <!-- Downloads Section -->
+        <section id="downloads" class="downloads-section">
+            <h2 data-lang="de">Meine Unterlagen</h2>
+            <h2 data-lang="en">My Documents</h2>
+            <div class="download-grid">
+                <div class="download-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/942/942195.png" alt="PDF" class="download-icon">
+                    <h3 data-lang="de">Lebenslauf</h3>
+                    <h3 data-lang="en">CV</h3>
+                    <p data-lang="de">Aktueller Lebenslauf im PDF-Format</p>
+                    <p data-lang="en">Current CV in PDF format</p>
+                    <a href="lebenslauf.pdf" class="cta-button" data-lang="de">Download (PDF)</a>
+                    <a href="cv.pdf" class="cta-button" data-lang="en">Download (PDF)</a>
+                </div>
+                
+                <div class="download-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2991/2991112.png" alt="Zeugnis" class="download-icon">
+                    <h3 data-lang="de">Arbeitszeugnisse</h3>
+                    <h3 data-lang="en">References</h3>
+                    <p data-lang="de">Sammlung aller relevanten Zeugnisse</p>
+                    <p data-lang="en">Collection of all relevant references</p>
+                    <a href="zeugnisse.pdf" class="cta-button" data-lang="de">Download (ZIP)</a>
+                    <a href="zeugnisse.pdf" class="cta-button" data-lang="en">Download (ZIP)</a>
+                </div>
+                
+                <div class="download-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721287.png" alt="Zertifikat" class="download-icon">
+                    <h3 data-lang="de">SAP-Zertifikat</h3>
+                    <h3 data-lang="en">SAP Certification</h3>
+                    <p data-lang="de">Zertifizierung in SAP [Modul]</p>
+                    <p data-lang="en">Certification in SAP [Module]</p>
+                    <a href="sap.pdf" class="cta-button" data-lang="de">Download (PDF)</a>
+                    <a href="sap.pdf" class="cta-button" data-lang="en">Download (PDF)</a>
+                </div>
+                
+                <div class="download-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721287.png" alt="Zertifikat" class="download-icon">
+                    <h3 data-lang="de">DATEV-Zertifikat</h3>
+                    <h3 data-lang="en">DATEV Certification</h3>
+                    <p data-lang="de">Zertifizierung in DATEV</p>
+                    <p data-lang="en">Certification in DATEV</p>
+                    <a href="datev.pdf" class="cta-button" data-lang="de">Download (PDF)</a>
+                    <a href="datev.pdf" class="cta-button" data-lang="en">Download (PDF)</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Kontakt Section -->
+        <section id="contact" class="downloads-section">
+            <h2 data-lang="de">Kontakt</h2>
+            <h2 data-lang="en">Contact</h2>
+            <p>📧 <a href="/cdn-cgi/l/email-protection#0d6f68647e7d6468614d68606c6461236e6260"><span class="__cf_email__" data-cfemail="5e3c3b372d2e373b321e3b333f3732703d3133">[email&#160;protected]</span></a></p>
+            <p>📞 <a href="tel:+49123456789">+49 123 456789</a></p>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p data-lang="de">&copy; 2025 Marque Bolay-og. Alle Rechte vorbehalten.</p>
-        <p data-lang="en" style="display: none;">&copy; 2025 Marque Bolay-og. All rights reserved.</p>
-        <p><a href="datenschutz.html" data-lang="de">Datenschutzerklärung</a></p>
-        <p><a href="datenschutz.html" data-lang="en" style="display: none;">Privacy Policy</a></p>
+        <p data-lang="de">&copy; 2025 Marc Quebbemann. Alle Rechte vorbehalten.</p>
+        <p data-lang="en">&copy; 2025 Marc Quebbemann. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript für Sprachumschaltung und DSGVO-Popup -->
     <script>
-        // Funktion zum Wechseln der Sprache
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Sprachumschaltung
         function switchLanguage(lang) {
-            // Alle Elemente mit data-lang-Attribut durchlaufen
             document.querySelectorAll('[data-lang]').forEach(element => {
-                if (element.getAttribute('data-lang') === lang) {
-                    element.style.display = ''; // Zeige die Elemente der ausgewählten Sprache an
-                } else {
-                    element.style.display = 'none'; // Verstecke die Elemente der anderen Sprache
-                }
+                element.style.display = element.getAttribute('data-lang') === lang ? '' : 'none';
             });
+            document.querySelector('.language-button.active').classList.remove('active');
+            document.querySelector(`.language-button[data-lang="${lang}"]`).classList.add('active');
         }
-
-        // Standardmäßig Deutsch anzeigen
-        switchLanguage('de');
-
-        // DSGVO-Funktionen
+        
+        document.querySelectorAll('.language-button').forEach(button => {
+            button.addEventListener('click', function() {
+                switchLanguage(this.getAttribute('data-lang'));
+            });
+        });
+        
+        // DSGVO Popup
         function acceptDSGVO() {
-            localStorage.setItem('dsgvo-accepted', 'true');
+            localStorage.setItem('dsgvoAccepted', 'true');
             document.getElementById('dsgvo-popup').style.display = 'none';
         }
 
         function declineDSGVO() {
-            localStorage.setItem('dsgvo-accepted', 'false');
+            localStorage.setItem('dsgvoAccepted', 'false');
             document.getElementById('dsgvo-popup').style.display = 'none';
-            alert(localStorage.getItem('dsgvo-accepted') === 'de' ? 'Sie haben Cookies abgelehnt.' : 'You have declined cookies.');
         }
 
-        // DSGVO-Popup anzeigen, wenn die Seite geladen wird
-        document.addEventListener('DOMContentLoaded', function() {
-            if (!localStorage.getItem('dsgvo-accepted')) {
+        window.addEventListener('load', function() {
+            if (!localStorage.getItem('dsgvoAccepted')) {
                 document.getElementById('dsgvo-popup').style.display = 'block';
             }
         });
+        
+        // Standardmäßig Deutsch anzeigen
+        switchLanguage('de');
     </script>
+</body>
+</html>
 </body>
 </html>
